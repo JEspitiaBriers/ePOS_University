@@ -1,0 +1,27 @@
+//--- PSEUDOCODE VERSION 0.1 FOR ePOS ---//
+
+connect to database
+
+log in by swiping a card
+enter 4 digit validation pin
+
+select popular items 
+display popular items
+
+iterate other items
+	display item in grid
+
+scan item or select on screen
+	add item to array of selected items
+	select quantity (default 1)
+	display selected items
+
+proceed to payment
+	swipe card to simulate transaction
+	
+display transaction accept or decline
+display receipt
+
+adjust stock accordingly
+increment number of items sold
+adjust popular items list
