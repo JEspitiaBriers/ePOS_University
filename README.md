@@ -5,6 +5,4 @@ This is university project to create a point-of-sale system. This README.md docu
 
 // -- this is to test how group editing works
 
-#
-
-lalalalalalalal
+This is an edit i wanted to make.
