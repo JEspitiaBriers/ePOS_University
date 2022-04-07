@@ -1,0 +1,39 @@
+Frontend_pseudocode
+body starts
+    show local time show local date format Week day month 
+
+    hr
+
+    var itemname
+    array itembasket
+    var priceitem
+    var quantityitem
+
+    <navbar>Category 1, Category 2, Category 3, Category 4</navbar>
+
+    <div id=articles>
+    check number of articles = n
+
+    for (i=n; i<= n; i++){
+        show article 
+        show description
+        action onclick(itembasket[i]  = itemname)  
+    }
+    </div articles>
+
+    <div checkout>
+        show items from previous loop
+        Charge button bootstrap colour 
+    </div checkout>
+
+    <footer>
+        buttons checkout admin etc
+    </footer>
+
+</div>
+
+end body
+
+
+
+
