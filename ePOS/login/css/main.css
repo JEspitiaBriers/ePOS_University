@@ -457,6 +457,8 @@ iframe {
 }
 
 
+
+
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
@@ -535,3 +537,8 @@ iframe {
 #time {
     background-color: rgb(177, 177, 177);
 }
+
+#footerText{
+    text-align: right;
+}
+
