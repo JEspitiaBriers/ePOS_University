@@ -4,5 +4,5 @@
 $dbhost  = 'localhost';
 $dbuser  = 'root';
 $dbpass  = '';
-$dbname  = 'noticeboard';
+$dbname  = 'ePOS';
 ?>
