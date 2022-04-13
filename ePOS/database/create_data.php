@@ -142,7 +142,7 @@ $firstname[] = "Mehadi"; $lastname[] = "Ali"; $job_role[] = "Admin"; $password[]
 $firstname[] = "multi name"; $lastname[] = "testing function"; $job_role[] = "F&B"; $password[] = "2143";
 
 // loop through the arrays above and add rows to the table:
-for ($i=1; $i<count($firstname); $i++)
+for ($i=0; $i<count($firstname); $i++)
 {
     $populateStaff = "INSERT INTO staff (username, firstname, lastname, job_role, password) VALUES ('". GenerateUsername($firstname[$i], $lastname[$i]) . "',
      '$firstname[$i]', '$lastname[$i]', '$job_role[$i]', '$password[$i]')";
