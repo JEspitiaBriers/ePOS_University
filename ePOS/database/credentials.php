@@ -5,4 +5,15 @@ $dbhost  = 'localhost';
 $dbuser  = 'root';
 $dbpass  = '';
 $dbname  = 'ePOS';
+
+
+//establish connection
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass);
+
+//display error message if failed to connect
+if (!$connection)
+{
+    die("Connection failed: " . $mysqli_connect_error);
+}
+
 ?>
