@@ -93,7 +93,7 @@ else
 }
 
 //create products table:
-$createProducts = "CREATE TABLE products (productID INT(10) AUTO_INCREMENT, product_name VARCHAR(16), price FLOAT(23), product_description VARCHAR(50), number_sold INT(10), PRIMARY KEY(productID));";
+$createProducts = "CREATE TABLE products (productID INT(10) AUTO_INCREMENT, product_name VARCHAR(16), price FLOAT(23), product_description VARCHAR(50), product_image VARCHAR(30), number_sold INT(10), PRIMARY KEY(productID));";
 
 // no data returned, check for drop success/failure:
 if (mysqli_query($connection, $createProducts))
@@ -178,13 +178,16 @@ function GenerateUsername ($firstname, $lastname) {
 
 
 //testing data for products table
-$product_name[] = "water"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $number_sold[] = "37854";
-$product_name[] = "chocolate bar"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $number_sold[] = "175697";
-$product_name[] = "shirt M"; $price[] = "15.25"; $product_description[] = "medium sized plain shirt"; $number_sold[] = "891";
-$product_name[] = "book"; $price[] = "10.99"; $product_description[] = "200 page book"; $number_sold[] = "3";
+$product_name[] = "water"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $product_image[] = "ePOS/images/water-250.png"; $number_sold[] = "21854";
+$product_name[] = "coke"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "ePOS/images/coke-250.png"; $number_sold[] = "37854";
+$product_name[] = "fanta"; $price[] = "1.00"; $product_description[] = "330ml can of fanta"; $product_image[] = "ePOS/images/fanta-250.png"; $number_sold[] = "31500";
+$product_name[] = "redbull"; $price[] = "1.25"; $product_description[] = "330ml can of redbull"; $product_image[] = "ePOS/images/redbull-250.png"; $number_sold[] = "11023";
+$product_name[] = "chocolate bar"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $product_image[] = "ePOS/images/noImage-250.png"; $number_sold[] = "17697";
+$product_name[] = "shirt M"; $price[] = "15.25"; $product_description[] = "medium sized plain shirt"; $product_image[] = "ePOS/images/noImage-250.png"; $number_sold[] = "891";
+$product_name[] = "book"; $price[] = "10.99"; $product_description[] = "200 page book"; $product_image[] = "ePOS/images/noImage-250.png"; $number_sold[] = "3";
 for ($i = 0; $i<count($product_name); $i++){
-    $populateProducts = "INSERT INTO products (productID, product_name, price, product_description, number_sold) VALUES (
-        '', '$product_name[$i]', '$price[$i]', '$product_description[$i]', '$number_sold[$i]');";
+    $populateProducts = "INSERT INTO products (productID, product_name, price, product_description, product_image, number_sold) VALUES (
+        '', '$product_name[$i]', '$price[$i]', '$product_description[$i]', '$product_image[$i]', '$number_sold[$i]');";
     if (mysqli_query($connection, $populateProducts))
     {
         echo "row inserted (product)<br>";
