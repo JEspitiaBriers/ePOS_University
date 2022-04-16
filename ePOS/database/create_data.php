@@ -1,7 +1,6 @@
 <?php
 
-require_once "credentials.php";
-
+require_once("credentials.php");
 $userID = "";
 
 //---START: create the database
@@ -114,7 +113,6 @@ else
 
 
 //----------START: table population
-
 //testing data for staff table:
 $populateBoss = "INSERT INTO staff (username, firstname, lastname, job_role, password) VALUES (
     'BB1234', 'BOSS', 'BOSS', 'BOSS', 'BOSS');";
@@ -196,7 +194,7 @@ $number_of_products[] = "12"; $products[] = "IMPLEMENT"; $total_cost[] = "51.82"
 $number_of_products[] = "42"; $products[] = "JSON"; $total_cost[] = "42.00"; $payment_type[] = "CARD"; $payment_status[] = "1"; 
 for($i=0; $i<count($number_of_products); $i++){
     $populateOrders = "INSERT INTO orders (orderID, number_of_products, products, total_cost, payment_type, payment_status) VALUES (
-        '' ,'$number_of_products[$i]', '" . CreateOrder() . "', '$total_cost[$i]', '$payment_type[$i]', '$payment_status[$i]');";
+        '' ,'$number_of_products[$i]', '$products[$i]', '$total_cost[$i]', '$payment_type[$i]', '$payment_status[$i]');";
     if (mysqli_query($connection, $populateOrders))
     {
         echo "row inserted (order)<br>";
@@ -207,37 +205,6 @@ for($i=0; $i<count($number_of_products); $i++){
     }
 }
 
-//creates a json file for the order
-function CreateOrder($orderID, $number_of_products, $total_cost, $payment_type, $payment_status) {
-    //checks if the order already exists
-    $checkOrder = "SELECT * FROM orders WHERE orderID = $orderID";
-    if(mysqli_num_rows(mysqli_query($connection, $checkQuery) = 0) {
-        $highestIDQuery = "SELECT MAX(orderID) FROM orders";
-        $highestID = mysqli_query($connection, $highestIDQuery);
-        mysqli_num_rows($highestID) > 0 ? $orderID = 1 + mysqli_fetch_row($highestID) : echo "Error increasing max ID";
-    }
-    );
-
-    $purchase = Array (
-        "Order number" => $orderID,
-        "Number of Products" => $number_of_products,
-        "Products Selected" => $selectedItems,
-        "Total Cost" => $total_cost,
-        "Payment Type" => $payment_type,
-        "Payment Status" => $payment_status
-    );
-
-    $order = json_encode($purchase);
-    $orderFile = file_put_contents("ePOS/OrderFiles/{$orderID}.json", $purchase);
-
-    return $orderFile;
-}
-/*
-press checkout
-save array of selected products into json file
-insert json file into database with other order info
-
-*/
 ///////////// --- NOTEs: products might change into json files using orderID as file name for receipts
 ///////////// --- products field will be a list of product ID numbers and number of each item bought
 //----------END: table population

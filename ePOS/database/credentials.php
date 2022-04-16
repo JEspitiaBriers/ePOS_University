@@ -8,7 +8,7 @@ $dbname  = 'ePOS';
 
 
 //establish connection
-$connection = mysqli_connect($dbhost, $dbuser, $dbpass);
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 //display error message if failed to connect
 if (!$connection)
@@ -16,4 +16,5 @@ if (!$connection)
     die("Connection failed: " . $mysqli_connect_error);
 }
 
+session_start();
 ?>
