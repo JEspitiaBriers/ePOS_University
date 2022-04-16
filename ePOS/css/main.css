@@ -241,13 +241,14 @@ iframe {
     max-height: 200px;
 }
 
-#workingArea{
+.workingArea{
     justify-content: center;
     width: 100%;
     justify-content: center;
     align-items: center;
     padding: 15px;
     background: #ffffff;
+    
 }
 
 .mainContainer{
@@ -297,15 +298,28 @@ iframe {
 .item{
     font-size: 1rem;
     display: inline-block;
-}
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 3px 3px #888888;
+    width: 120px;
+    height: 140px;
+    border-radius: 10px;
+    margin: 10px;
+  
+  
+}s
 
 .img{
-    border: 1px solid;
-  padding: 10px;
-  box-shadow: 3px 3px #888888;
-  max-width: 100px;
-  max-height: 100px;
-  margin: 10px;
+    width: 90%;
+  height: 90%;
+  text-align: center;
+  
+}
+
+.itemName{
+    width: 80%;
+    height: 80%;
+    text-align: center;
 
 }
 
@@ -605,5 +619,42 @@ iframe {
 #footerText{
     text-align: right;
 }
+
+/*-----------SEARCH BAR-----------------------*/
+* {
+    box-sizing: border-box;
+  }
+  
+  #myInput {
+    background-image: url("/images/icons/search.png");
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  
+  #myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+  }
+  
+  #myUL li a:hover:not(.header) {
+    background-color: #eee;
+  }
 
 
