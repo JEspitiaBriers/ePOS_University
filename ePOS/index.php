@@ -19,6 +19,7 @@ session_start();
                 <form action="testcheckout.php">   
                 <input type="submit" value="Checkout">
                 </form>
+                <a href="logout.php">Logout</a>
             
 
                 <body>
