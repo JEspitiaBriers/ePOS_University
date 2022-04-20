@@ -1,5 +1,5 @@
 <?php
-require_once 'credentials.php';
+require_once '../database/credentials.php';
 
 // -- will just run a function to grab whatever product the admin just
 // --edited and update the db (once passing validation )
@@ -12,7 +12,7 @@ $productDesc = "";
 $noSoldProduct = "";
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if($_SESSION['username'] == "admin"){
-    if (isset($_POST['post'])){
+    if (isset($_POST['prod'])){
 
             
         // Attempt to connect. Return an error if not.

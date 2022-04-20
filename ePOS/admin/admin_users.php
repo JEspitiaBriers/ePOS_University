@@ -94,7 +94,7 @@ while($rows = mysqli_fetch_assoc($results)){
                         <form class="modal-footer" method="POST" action="delete_user.php">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name="user" value="'.$rows['username'].'">Yes</button>
+                        <button type="submit" class="btn btn-danger" name="staff" value="'.$rows['username'].'">Yes</button>
                         </form>
                     </div>
                 </div>

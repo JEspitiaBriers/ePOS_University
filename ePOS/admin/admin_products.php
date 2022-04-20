@@ -61,7 +61,7 @@ while($rows = mysqli_fetch_assoc($results)){
                                     <input name="number_sold" type="text" value ="'.$rows['number_sold'].'"><br/>
                         </div>
                         <form class="modal-footer" method="POST" action="edit_products.php">
-                            <button type="submit" class="btn btn-success" name="user" value="'.$rows['productID'].'">Submit Changes</button>
+                            <button type="submit" class="btn btn-success" name="prod" value="'.$rows['productID'].'">Submit Changes</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
                 </div>
@@ -91,7 +91,7 @@ while($rows = mysqli_fetch_assoc($results)){
                         <form class="modal-footer" method="POST" action="delete_products.php">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name="user" value="'.$rows['productID'].'">Yes</button>
+                        <button type="submit" class="btn btn-danger" name="prod" value="'.$rows['productID'].'">Yes</button>
                         </form>
                     </div>
                 </div>

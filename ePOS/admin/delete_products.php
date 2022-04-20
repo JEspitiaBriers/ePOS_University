@@ -1,12 +1,11 @@
 <?php
-require 'header.php';
 //this is a utility page with no html for the user to see
 
-if (isset($_POST['post']))
+if (isset($_POST['prod']))
 {
-    require_once 'credentials.php';
+    require_once '../database/credentials.php';
 
-    $productID = $_POST['post'];
+    $productID = $_POST['prod'];
 
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
@@ -22,7 +21,6 @@ if (isset($_POST['post']))
     //test so that if it actually happened, nothing else done here
     if ($result)
     {
-        echo "Product deleted";
         // navigate back to the admin page:
         header('Location: admin_products.php');
     }
