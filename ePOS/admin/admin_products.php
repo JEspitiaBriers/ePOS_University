@@ -22,7 +22,7 @@ echo <<<_END
 _END;
 
 
-$query = "SELECT * FROM users";
+$query = "SELECT * FROM products";
 
 //edit_products.php does not exist as of 19/04.
 //nor delete_products.php.
