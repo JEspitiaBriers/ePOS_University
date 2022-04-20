@@ -29,10 +29,6 @@
 
 
   echo <<<HEREDOC
-
-      <!DOCTYPE html>
-      <html lang="en">
-
       <head>
           <title>Login - ePOS</title>
           <meta charset="UTF-8">
