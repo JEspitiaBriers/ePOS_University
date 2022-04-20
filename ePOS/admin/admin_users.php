@@ -1,6 +1,6 @@
 <?php
-require 'header.php';
-require_once 'credentials.php';
+require '../head.php';
+require_once '../database/credentials.php';
 
 
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -21,19 +21,23 @@ echo <<<_END
 _END;
 
 
-$query = "SELECT * FROM users";
+$query = "SELECT * FROM staff";
 
 //edit_users.php does not exist as of 11/04.
 //nor delete_users.php.
+
+
+//not showing passwords of staff members
+//job role being drop down menu to change?
 $results = mysqli_query($connection, $query);
 while($rows = mysqli_fetch_assoc($results)){
     echo "<tr>";
-    echo "<td>{$rows['uid']}</td><td>{$rows['username']}</td><td>{$rows['firstname']}</td><td>{$rows['lastname']}"; 
+    echo "<td>{$rows['username']}</td><td>{$rows['firstname']}</td><td>{$rows['lastname']}</td><td>{$rows['job_role']}</td>"; 
     
     echo '<td>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['uid'].'">Edit</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['username'].'">Edit</button>
 
-    <div class="modal fade"id="editModal'.$rows['uid'].'" tabindex="-1" aria-labelledby="editModalLabel'.$rows['uid'].'" aria-hidden="true">
+    <div class="modal fade"id="editModal'.$rows['username'].'" tabindex="-1" aria-labelledby="editModalLabel'.$rows['username'].'" aria-hidden="true">
     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -42,23 +46,25 @@ while($rows = mysqli_fetch_assoc($results)){
                             </div>
                             <div class="modal-body">
                                 <form method = "POST" action ="edit_users.php">
-                                    <label for="uid" id ="uid">User ID</label></br>
-                                    <input name="uid" type="text" value ="'.$rows['uid'].'"><br/>
-
                                     <label for="username" id ="username">Username</label></br>
                                     <input name="username" type="text" value ="'.$rows['username'].'"><br/>
-
-                                    <label for="password" id ="password">User Password</label></br>
-                                    <input name="password" type="text" value ="'.$rows['password'].'"><br/>
 
                                     <label for="firstname" id ="firstname">First name</label></br>
                                     <input name="firstname" type="text" value ="'.$rows['firstname'].'"><br/>
 
                                     <label for="lastname" id ="lastname">Last name</label></br>
                                     <input name="lastname" type="text" value ="'.$rows['lastname'].'"><br/>
+
+                                    <label for="job_role" id ="job_role">Job Role</label></br>
+                                    <input name="job_role" type="text" value ="'.$rows['job_role'].'"><br/>
+
+
+                                    <label for="password" id ="password">User Password</label></br>
+                                    <input name="password" type="text" value ="'.$rows['password'].'"><br/>
+
                         </div>
                         <form class="modal-footer" method="POST" action="edit_users.php">
-                            <button type="submit" class="btn btn-success" name="user" value="'.$rows['uid'].'">Submit Changes</button>
+                            <button type="submit" class="btn btn-success" name="user" value="'.$rows['username'].'">Submit Changes</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
                 </div>
@@ -73,9 +79,9 @@ while($rows = mysqli_fetch_assoc($results)){
 
 
     echo '<td>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal'.$rows['uid'].'">Delete</button> 
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal'.$rows['username'].'">Delete</button> 
             
-            <div class="modal fade"id="deleteModal'.$rows['uid'].'" tabindex="-1" aria-labelledby="deleteModalLabel'.$rows['uid'].'" aria-hidden="true">
+            <div class="modal fade"id="deleteModal'.$rows['username'].'" tabindex="-1" aria-labelledby="deleteModalLabel'.$rows['username'].'" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -88,7 +94,7 @@ while($rows = mysqli_fetch_assoc($results)){
                         <form class="modal-footer" method="POST" action="delete_user.php">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name="user" value="'.$rows['uid'].'">Yes</button>
+                        <button type="submit" class="btn btn-danger" name="user" value="'.$rows['username'].'">Yes</button>
                         </form>
                     </div>
                 </div>
@@ -107,6 +113,6 @@ echo <<<_END
     <div>
 _END;
 
-require 'footer.php';
+//require '../footer.php';
 
 ?>

@@ -2,4 +2,6 @@ could have one page, ability to swap through each table to manage with a dropdow
 would utilise jquery, saves on space and a user can change multiple things without having
 to move.
 
+need a button on the admin pages to produce a end of sale report. 
+
 

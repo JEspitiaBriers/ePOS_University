@@ -1,7 +1,6 @@
 <?php
-require 'header.php';
-require_once 'credentials.php';
-
+require '../head.php';
+require_once '../database/credentials.php';
 
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 //class was container-fluid, maybe a bootstrap thing idk
@@ -13,9 +12,9 @@ echo <<<_END
                     <th>Product Image</th>
                     <th>Product ID</th>
                     <th>Product Name</th>
+                    <th>Description</th>
                     <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Barcode Number EMPTY NO USE</th>
+                    <th>Number Sold</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,37 +28,40 @@ $query = "SELECT * FROM products";
 $results = mysqli_query($connection, $query);
 while($rows = mysqli_fetch_assoc($results)){
     echo "<tr>";
-    echo "<td>{$rows['pimage']}</td><td>{$rows['pid']}</td><td>{$rows['productName']}</td><td>{$rows['price']}</td><td>{$rows['quantity']}"; 
+    echo "<td>{$rows['product_image']}</td><td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td><td>{$rows['number_sold']}</td>"; 
     
     echo '<td>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['uid'].'">Edit</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['productID'].'">Edit</button>
 
-    <div class="modal fade"id="editModal'.$rows['uid'].'" tabindex="-1" aria-labelledby="editModalLabel'.$rows['uid'].'" aria-hidden="true">
+    <div class="modal fade"id="editModal'.$rows['productID'].'" tabindex="-1" aria-labelledby="editModalLabel'.$rows['productID'].'" aria-hidden="true">
     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Edit User Information</h5>
+                                <h5 class="modal-title">Edit Product Information</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method = "POST" action ="edit_users.php">
-                                    <label for="uid" id ="uid">User ID</label></br>
-                                    <input name="uid" type="text" value ="'.$rows['uid'].'"><br/>
+                                <form method = "POST" action ="edit_products.php">
 
-                                    <label for="username" id ="username">Username</label></br>
-                                    <input name="username" type="text" value ="'.$rows['username'].'"><br/>
+                                    <img class = "img_responsive" src ='.$rows['product_image'].' alt = "">
 
-                                    <label for="password" id ="password">User Password</label></br>
-                                    <input name="password" type="text" value ="'.$rows['password'].'"><br/>
+                                    <label for="productID" id ="productID">Product ID</label></br>
+                                    <input name="productID" type="text" value ="'.$rows['productID'].'"><br/>
 
-                                    <label for="firstname" id ="firstname">First name</label></br>
-                                    <input name="firstname" type="text" value ="'.$rows['firstname'].'"><br/>
+                                    <label for="product_name" id ="product_name">Product Name</label></br>
+                                    <input name="product_name" type="text" value ="'.$rows['product_name'].'"><br/>
 
-                                    <label for="lastname" id ="lastname">Last name</label></br>
-                                    <input name="lastname" type="text" value ="'.$rows['lastname'].'"><br/>
+                                    <label for="product_description" id ="product_description">Description</label></br>
+                                    <input name="product_description" type="text" value ="'.$rows['product_description'].'"><br/>
+
+                                    <label for="price" id ="price">Price</label></br>
+                                    <input name="price" type="text" value ="'.$rows['price'].'"><br/>
+
+                                    <label for="number_sold" id ="number_sold">Number Sold</label></br>
+                                    <input name="number_sold" type="text" value ="'.$rows['number_sold'].'"><br/>
                         </div>
-                        <form class="modal-footer" method="POST" action="edit_users.php">
-                            <button type="submit" class="btn btn-success" name="user" value="'.$rows['uid'].'">Submit Changes</button>
+                        <form class="modal-footer" method="POST" action="edit_products.php">
+                            <button type="submit" class="btn btn-success" name="user" value="'.$rows['productID'].'">Submit Changes</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
                 </div>
@@ -74,22 +76,22 @@ while($rows = mysqli_fetch_assoc($results)){
 
 
     echo '<td>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal'.$rows['uid'].'">Delete</button> 
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal'.$rows['productID'].'">Delete</button> 
             
-            <div class="modal fade"id="deleteModal'.$rows['uid'].'" tabindex="-1" aria-labelledby="deleteModalLabel'.$rows['uid'].'" aria-hidden="true">
+            <div class="modal fade"id="deleteModal'.$rows['productID'].'" tabindex="-1" aria-labelledby="deleteModalLabel'.$rows['productID'].'" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Delete User?</h5>
+                            <h5 class="modal-title">Delete Product?</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                            <p>Are you sure you want to delete this user? This action cannot be undone.</p>
+                            <p>Are you sure you want to delete this product? All data will be lost, including number of this item sold. This action cannot be undone.</p>
                         </div>
-                        <form class="modal-footer" method="POST" action="delete_user.php">
+                        <form class="modal-footer" method="POST" action="delete_products.php">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name="user" value="'.$rows['uid'].'">Yes</button>
+                        <button type="submit" class="btn btn-danger" name="user" value="'.$rows['productID'].'">Yes</button>
                         </form>
                     </div>
                 </div>
@@ -108,6 +110,6 @@ echo <<<_END
     <div>
 _END;
 
-require 'footer.php';
+//require 'footer.php';
 
 ?>
