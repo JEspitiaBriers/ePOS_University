@@ -23,12 +23,10 @@ _END;
 
 $query = "SELECT * FROM products";
 
-//edit_products.php does not exist as of 19/04.
-//nor delete_products.php.
 $results = mysqli_query($connection, $query);
 while($rows = mysqli_fetch_assoc($results)){
     echo "<tr>";
-    echo "<td>{$rows['product_image']}</td><td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td><td>{$rows['number_sold']}</td>"; 
+    echo "<td><img src =../".$rows['product_image']." alt = ''</img></td><td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td><td>{$rows['number_sold']}</td>"; 
     
     echo '<td>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['productID'].'">Edit</button>
@@ -43,7 +41,7 @@ while($rows = mysqli_fetch_assoc($results)){
                             <div class="modal-body">
                                 <form method = "POST" action ="edit_products.php">
 
-                                    <img class = "img_responsive" src ='.$rows['product_image'].' alt = "">
+                                    <img class = "img_responsive" src =../'.$rows['product_image'].' alt = "">
 
                                     <label for="productID" id ="productID">Product ID</label></br>
                                     <input name="productID" type="text" value ="'.$rows['productID'].'"><br/>

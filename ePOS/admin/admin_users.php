@@ -10,7 +10,6 @@ echo <<<_END
             <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
             <thead>
                 <tr>
-                    <th>User ID</th>
                     <th>Username</th>
                     <th>First name</th>
                     <th>Last name</th>
@@ -91,7 +90,7 @@ while($rows = mysqli_fetch_assoc($results)){
                          <div class="modal-body">
                             <p>Are you sure you want to delete this user? This action cannot be undone.</p>
                         </div>
-                        <form class="modal-footer" method="POST" action="delete_user.php">
+                        <form class="modal-footer" method="POST" action="delete_users.php">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-danger" name="staff" value="'.$rows['username'].'">Yes</button>
