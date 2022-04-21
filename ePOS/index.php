@@ -12,6 +12,10 @@ session_start();
     echo '<html lang="en">';
     include "head.php";
 
+
+    //DJ general notes 20/04
+    //
+
     if (isset($_SESSION['loggedin'])) {
 
         echo <<<HEREDOC
