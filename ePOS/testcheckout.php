@@ -1,11 +1,12 @@
 <?php
 
-session_start();
+require_once "header.php";
 
-$_SESSION['orderID'] = '0';
+$_SESSION['orderID'] = '8';
+echo "orderID is {$_SESSION['orderID']}";
 
 echo <<<END
-<form action="database/update_order.php">   
+<form action="update_order.php">   
     <input type="submit" value="Checkout">
 </form>
 END;

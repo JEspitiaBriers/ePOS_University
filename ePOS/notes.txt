@@ -5,3 +5,6 @@ to move.
 need a button on the admin pages to produce a end of sale report. 
 
 
+-- for Jamie
+create receipt in pdf format 
+use order file to populate receipt

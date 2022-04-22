@@ -106,7 +106,7 @@ else
 }
 
 //create orders table:
-$createOrders = "CREATE TABLE orders (orderID INT(10) AUTO_INCREMENT, number_of_products SMALLINT(10), products VARCHAR(100), total_cost FLOAT(23), payment_type VARCHAR(20), payment_status BOOLEAN, PRIMARY KEY(orderID));";
+$createOrders = "CREATE TABLE orders (orderID INT(10) AUTO_INCREMENT, number_of_products SMALLINT(10), products VARCHAR(100), total_cost FLOAT(23), payment_type VARCHAR(20), payment_status VARCHAR(8), PRIMARY KEY(orderID));";
 ///////////// --- NOTEs: products might change into json files using orderID as file name for receipts
 ///////////// --- products field will be a list of product ID numbers and number of each item bought
 
@@ -199,9 +199,9 @@ for ($i = 0; $i<count($product_name); $i++){
 
 
 //testing data for orders table
-$number_of_products[] = "77"; $products[] = "MUST"; $total_cost[] = "197.58"; $payment_type[] = "CARD"; $payment_status[] = "0"; 
-$number_of_products[] = "12"; $products[] = "IMPLEMENT"; $total_cost[] = "51.82"; $payment_type[] = "CASH"; $payment_status[] = "1"; 
-$number_of_products[] = "42"; $products[] = "JSON"; $total_cost[] = "42.00"; $payment_type[] = "CARD"; $payment_status[] = "1"; 
+$number_of_products[] = "77"; $products[] = "MUST"; $total_cost[] = "197.58"; $payment_type[] = "CARD"; $payment_status[] = "AWAITING"; 
+$number_of_products[] = "12"; $products[] = "IMPLEMENT"; $total_cost[] = "51.82"; $payment_type[] = "CASH"; $payment_status[] = "RECEIVED"; 
+$number_of_products[] = "42"; $products[] = "JSON"; $total_cost[] = "42.00"; $payment_type[] = "CARD"; $payment_status[] = "RECEIVED"; 
 for($i=0; $i<count($number_of_products); $i++){
     $populateOrders = "INSERT INTO orders (orderID, number_of_products, products, total_cost, payment_type, payment_status) VALUES (
         '' ,'$number_of_products[$i]', '$products[$i]', '$total_cost[$i]', '$payment_type[$i]', '$payment_status[$i]');";
