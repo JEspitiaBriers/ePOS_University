@@ -1,12 +1,4 @@
-<?php    
-
-
-
-// someone please help :'[ im having issues with the $_SESSION Variable -->
-//in the page linked above, i set $_SESSION['orderID'] = 0 
-// but in update_order page (click the link on the button in testcheckout.php),
-// the $_SESSION['orderID'] variable doesnt work.
-
+<?php
     include "head.php";
 
 
@@ -17,7 +9,7 @@
 
         echo <<<HEREDOC
             
-                <form action="testcheckout.php">   
+                <form action="update_order.php">   
                 <input type="submit" value="Checkout">
                 </form>
                 <a href="logout.php">Logout</a>

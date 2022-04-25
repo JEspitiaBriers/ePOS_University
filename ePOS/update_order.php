@@ -2,6 +2,7 @@
 
 require_once "head.php";
 $isNewOrder = false;
+$_SESSION['orderID'] = '3';
 if(isset($_SESSION['orderID'])){
     echo "Update Order <br> the current orderID is " . $_SESSION['orderID'] . "<br><br>";
 }
