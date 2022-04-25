@@ -45,92 +45,81 @@
                                         <div>
                                             <img class="img"src="images/products/water-250.png">
                                             <div class="itemName">Water</div>
+                                            <div class="itemDetails">
+                                                <span hidden class="itemPrice">0.75</span>
+                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div>
+                                            <img class="img"src="images/products/coke-250.png">
+                                            <div class="itemName">Coke</div>
+                                            <div class="itemDetails">
+                                                <span hidden class="itemPrice">1.50</span>
+                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div>
+                                            <img class="img"src="images/products/fanta-250.png">
+                                            <div class="itemName">Fanta</div>
+                                            <div class="itemDetails">
+                                                <span hidden class="itemPrice">1.50</span>
+                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
+                                            </div>
                                         </div>
                                     </div>
                         
                                     <div class="item">
                                         <div>
-                                            <img class="img" src="images/products/coke-250.png">
-                                            <div class="itemName">Coke</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <img class="img" src="images/products/fanta-250.png">
-                                            <div class="itemName">Fanta</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <img class="img" src="images/products/redbull-250.png">
+                                            <img class="img"src="images/products/redbull-250.png">
                                             <div class="itemName">RedBull</div>
+                                            <div class="itemDetails">
+                                                <span hidden class="itemPrice">2.50</span>
+                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="item">
                                         <div>
                                             <div class="img">No picture</div>
                                             <div class="itemName">Beer</div>
+                                            <div class="itemDetails">
+                                                <span hidden class="itemPrice">3.50</span>
+                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
+                                            </div>
                                         </div>
                                     </div>
+                                
                                     <div class="item">
                                         <div>
-                                            <img class="img" src="images/products/orangejuice.png">
+                                            <img class="img"src="images/products/orangejuice.png">
                                             <div class="itemName">Orange Juice</div>
+                                            <div class="itemDetails">
+                                                <span hidden class="itemPrice">1.20</span>
+                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div>
-                                            <p class="img">No picture</p>
-                                            <div class="itemName">XXXXX</div>
-                                        </div>
-                                    </div>
+
                                 
                                 </div>
                             </div>
                             <div id="checkout" class="col border-start border-dark">
                                 Checkout
+
+                                <div class="cart-items">
+                                </div>
+                                <div class="cart-total">
+                                    <strong class="cart-total-title">Total</strong>
+                                    <span class="cart-total-price">$0</span>
+                                </div>
+                                <button class="btn btn-primary btn-purchase" type="button">Checkout</button>
                             </div>
                         </div>
                     </div>
