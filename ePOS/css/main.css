@@ -616,4 +616,17 @@ iframe {
     text-align: right;
 }
 
-
+/*------------------------------------------------------------------
+[Receipt Table]*/
+.receiptCenter {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+table {
+    border-collapse: collapse;
+}
+th, td {
+    text-align:left;
+    padding: 5px;
+}

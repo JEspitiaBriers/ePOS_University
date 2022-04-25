@@ -1,12 +1,12 @@
 <?php
 
-require_once "header.php";
+require_once "head.php";
 $isNewOrder = false;
 if(isset($_SESSION['orderID'])){
-    echo "the current orderID is " . $_SESSION['orderID'] . "<br><br>";
+    echo "Update Order <br> the current orderID is " . $_SESSION['orderID'] . "<br><br>";
 }
 else{
-    echo "session orderID not set";
+    echo "update order <br> session orderID not set";
 }
 //it should be incremented from the highest value if the order is new
 //checks if the order already exists
@@ -31,24 +31,21 @@ if($orderResults == 0) {
     }
 }
 
+
 $purchase = Array (
     "Order number" => $_SESSION['orderID'],
-    //"Number of Products" => $number_of_products,
     "Products Selected" => Array(
-        "coke" => "1.00",
-        "coke" => "1.00",
-        "water" => "1.25",
-        "fanta" => "1.00"
+        "3x" => "Coke",
+        "1x" => "Water",
+        "2x" => "Fanta",
+        "4x" => "Chocolate Bar"
     )
-    //"Total Cost" => $total_cost,
-    //"Payment Type" => $payment_type,
-    //"Payment Status" => $payment_status
 );
 
 //creates a json file for the order
 $order = json_encode($purchase);
 $fileName = "order{$_SESSION['orderID']}.json";
-$orderFile = file_put_contents("order{$_SESSION['orderID']}.json", $order);
+$orderFile = file_put_contents("ordersFolder/order{$_SESSION['orderID']}.json", $order);
 
 //creating random data to fill the fields of a new order
 //data is only random for testing purposes.
@@ -74,4 +71,10 @@ else {
     $updateProducts = "UPDATE orders SET products = '".$fileName."' WHERE orderID = {$_SESSION['orderID']}";
 }
 mysqli_query($connection, $updateProducts);
+
+echo <<<END
+<form action="createReceipt.php">   
+    <input type="submit" value="Print Receipt">
+</form>
+END;
 ?>

@@ -1,0 +1,3 @@
+This folder is used to contain all the order files in one place.
+The orders are named incrementally so identifying individual orders is easy.
+Orders are updated and generated in "update_order.php".

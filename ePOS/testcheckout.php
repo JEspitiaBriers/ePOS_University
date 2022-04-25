@@ -1,9 +1,9 @@
 <?php
 
-require_once "header.php";
+require_once "head.php";
 
-$_SESSION['orderID'] = '8';
-echo "orderID is {$_SESSION['orderID']}";
+$_SESSION['orderID'] = '2';
+echo "Test Check Out. <br> orderID is {$_SESSION['orderID']}";
 
 echo <<<END
 <form action="update_order.php">   

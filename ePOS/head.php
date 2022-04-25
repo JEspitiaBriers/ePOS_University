@@ -1,4 +1,12 @@
-
+<?php
+session_start();
+require_once "database/credentials.php";
+require_once "fpdf/fpdf.php";
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+echo <<<END
+    <h1>ePOS prototype v0.001 (setup)</h1>
+END;
+?>
 <!DOCTYPE html>
 <html>
 
