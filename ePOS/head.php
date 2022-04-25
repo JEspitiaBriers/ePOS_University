@@ -1,11 +1,19 @@
 <?php
 date_default_timezone_set('Europe/London');
-require_once "credentials.php";
+require_once "database/credentials.php";
 session_start();
 //only one session start. 
 //we do this in the header as it is one of the files CONSTANTLY being used by every other page, so it makes sense to start the session here
 //and end session either after a logout or time out
 //22/04 - DJ - onload display ct should change the H6 div id'd s clock, however it does not.
+
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+//display error message if failed to connect
+if (!$connection)
+{
+    die("Connection failed: " . $mysqli_connect_error);
+}
+
 echo <<<_END
 
     <!DOCTYPE html>
