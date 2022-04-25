@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="cart-total">
                                     <strong class="cart-total-title">Total</strong>
-                                    <span class="cart-total-price">$0</span>
+                                    <span class="cart-total-price">£0</span>
                                 </div>
                                 <button class="btn btn-primary btn-purchase" type="button">Checkout</button>
                             </div>
