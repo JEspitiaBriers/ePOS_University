@@ -1,9 +1,12 @@
 <?php
+
+$username = "";
+
 if (isset($_POST['staff']))//checking if the value of user has been sent. this is the name of the button on the manage_users.php page
 {
     require_once '../database/credentials.php';
 
-    $staffUsername= $_POST['staff'];
+    $username= $_POST['staff'];
 
     $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     
@@ -13,7 +16,7 @@ if (isset($_POST['staff']))//checking if the value of user has been sent. this i
         die("Connection failed: " . $mysqli_connect_error);
     }
 
-    $query = "DELETE FROM staff WHERE username = '$staffUsername'";//query to delete user
+    $query = "DELETE FROM staff WHERE username = '$username'";//query to delete user
     $result = mysqli_query($connection,$query);
 
     

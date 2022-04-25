@@ -63,7 +63,7 @@ while($rows = mysqli_fetch_assoc($results)){
 
                         </div>
                         <form class="modal-footer" method="POST" action="edit_users.php">
-                            <button type="submit" class="btn btn-success" name="user" value="'.$rows['username'].'">Submit Changes</button>
+                            <button type="submit" class="btn btn-success" name="staff" value="'.$rows['username'].'">Submit Changes</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
                 </div>
