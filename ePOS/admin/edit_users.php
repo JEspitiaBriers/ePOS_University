@@ -9,7 +9,7 @@ $job_role = "";
 $password = "";
 
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-if (isset($_POST['user'])){
+if (isset($_POST['staff'])){
 
     if (!$connection)
     {
@@ -22,7 +22,7 @@ if (isset($_POST['user'])){
     $job_role = $_POST['job_role'];
     $password = $_POST['password'];
 
-    $query = "UPDATE staff SET firstname = '$firstname', lastname ='$lastname', job_role ='$job_role', password = '$password' WHERE username = '$username'  ";
+    $query = "UPDATE staff SET firstname = '$firstname', lastname ='$lastname', job_role ='$job_role', password = '$password' WHERE username = '$username' ";
 
     $result = mysqli_query($connection, $query);
 

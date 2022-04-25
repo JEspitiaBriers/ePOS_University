@@ -1,15 +1,12 @@
 <?php    
 
-session_start();
 
-    echo "<!DOCTYPE html>";
 
 // someone please help :'[ im having issues with the $_SESSION Variable -->
 //in the page linked above, i set $_SESSION['orderID'] = 0 
 // but in update_order page (click the link on the button in testcheckout.php),
 // the $_SESSION['orderID'] variable doesnt work.
 
-    echo '<html lang="en">';
     include "head.php";
 
 
@@ -162,9 +159,6 @@ session_start();
                             </footer>
                         </div>
                     </div>
-                </body>
-
-            </html>
         HEREDOC; 
     }
     
@@ -173,4 +167,6 @@ session_start();
         header("Refresh:0; url=login.php");
         
     }
+
+    require "footer.php";
 ?>
