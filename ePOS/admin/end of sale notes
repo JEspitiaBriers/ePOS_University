@@ -5,3 +5,26 @@ accounts of transactions (money in / out)
 inventory balance
 daily sales
 amount sold of products
+
+
+
+
+
+27/04
+table admins can see,
+fields of 
+
+amount of open baskets (payments not true, awaiting)
+
+how much each item has sold?
+how much money made (total cost of all receipts made today)
+"today" would be date.now() sorta thing.
+how many of each payment type
+
+best hour, number of sales, 
+
+how many transactions
+balance (stock before and after)
+
+
+export data to xml? button
