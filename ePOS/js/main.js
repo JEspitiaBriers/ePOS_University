@@ -138,7 +138,7 @@ function ready() {
         input.addEventListener('change', quantityChanged)
     }
 
-    var addToCartButtons = document.getElementsByClassName('shop-item-button')
+    var addToCartButtons = document.getElementsByClassName('item')
     for (var i = 0; i < addToCartButtons.length; i++) {
         var button = addToCartButtons[i]
         button.addEventListener('click', addToCartClicked)
@@ -175,12 +175,11 @@ function addToCartClicked(event) {
     var shopItem = button.parentElement.parentElement
     var title = shopItem.getElementsByClassName('itemName')[0].innerText
     var price = shopItem.getElementsByClassName('itemPrice')[0].innerText
-    var imageSrc = shopItem.getElementsByClassName('img')[0].src
-    addItemToCart(title, price, imageSrc)
+    addItemToCart(title, price)
     updateCartTotal()
 }
 
-function addItemToCart(title, price, imageSrc) {
+function addItemToCart(title, price) {
     var cartRow = document.createElement('div')
     cartRow.classList.add('cart-row')
     var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -191,16 +190,26 @@ function addItemToCart(title, price, imageSrc) {
             return
         }
     }
+
+    $(function numberlist(){
+        var $select = $(".1-100");
+        for (i=1;i<=100;i++){
+            $select.append($('<option></option>').val(i).html(i))
+        }
+    })
+
+   
+
     var cartRowContents = `
         <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
             <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price cart-column">${price}</span>
-        <div class="cart-quantity cart-column">
+            <span class="cart-price cart-column">${price}</span>
             <input class="cart-quantity-input" type="number" value="1">
+            <input type="number" name="qty" min="1" max="100">
             <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>`
+        </div>
+        
+       `
     cartRow.innerHTML = cartRowContents
     cartItems.append(cartRow)
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem)

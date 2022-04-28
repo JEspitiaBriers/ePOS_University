@@ -47,7 +47,6 @@
                                             <div class="itemName">Water</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">0.75</span>
-                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +57,6 @@
                                             <div class="itemName">Coke</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">1.50</span>
-                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +67,6 @@
                                             <div class="itemName">Fanta</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">1.50</span>
-                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +77,6 @@
                                             <div class="itemName">RedBull</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">2.50</span>
-                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +87,6 @@
                                             <div class="itemName">Beer</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">3.50</span>
-                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
                                             </div>
                                         </div>
                                     </div>
@@ -102,7 +97,6 @@
                                             <div class="itemName">Orange Juice</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">1.20</span>
-                                                <button class="btn btn-primary shop-item-button" type="button">TEST</button>
                                             </div>
                                         </div>
                                     </div>
