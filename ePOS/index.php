@@ -16,6 +16,12 @@
             
 
                 <body>
+                <div class="checkoutButton position-absolute top-50 start-0">
+                    <button class="btn btn-info btn-warning" type="button">Orders</button><br>
+                    <button class="btn btn-info btn-warning" type="button">End of day process</button>
+                </div>
+                
+
                 <div id="body" class="limiter">
                     <div class="mainContainer">
                         <div class="wrap-mainContainer">
@@ -47,6 +53,7 @@
                                             <div class="itemName">Water</div>
                                             <div class="itemDetails">
                                                 <span hidden class="itemPrice">0.75</span>
+                                                <span hidden class="EAN13">5000167079470</span>
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +120,11 @@
                                     <strong class="cart-total-title">Total</strong>
                                     <span class="cart-total-price">£0</span>
                                 </div>
-                                <button class="btn btn-primary btn-purchase" type="button">Checkout</button>
+                                <div class="checkoutButton">
+                                    <button class="btn btn-warning btn-lg btn-block" type="button">Checkout</button>
+                                </div>
+
+                                
                             </div>
                         </div>
                     </div>

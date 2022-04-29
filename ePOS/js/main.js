@@ -9,94 +9,97 @@ if (document.readyState == 'loading') {
 
 /*----validation login screen --*/
 
-(function ($) {
-    "use strict";
+window.onload = function(){
+
+    (function ($) {
+        "use strict";
 
 
-    /*==================================================================
-    [ Focus input ]*/
-    $('.input100').each(function(){
-        $(this).on('blur', function(){
-            if($(this).val().trim() != "") {
-                $(this).addClass('has-val');
+        /*==================================================================
+        [ Focus input ]*/
+        $('.input100').each(function(){
+            $(this).on('blur', function(){
+                if($(this).val().trim() != "") {
+                    $(this).addClass('has-val');
+                }
+                else {
+                    $(this).removeClass('has-val');
+                }
+            })    
+        })
+    
+    
+        /*==================================================================
+        [ Validate ]*/
+        var input = $('.validate-input .input100');
+
+        $('.validate-form').on('submit',function(){
+            var check = true;
+
+            for(var i=0; i<input.length; i++) {
+                if(validate(input[i]) == false){
+                    showValidate(input[i]);
+                    check=false;
+                }
+            }
+
+            return check;
+        });
+
+
+        $('.validate-form .input100').each(function(){
+            $(this).focus(function(){
+            hideValidate(this);
+            });
+        });
+
+        function validate (input) {
+            if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+                if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+                    return false;
+                }
             }
             else {
-                $(this).removeClass('has-val');
-            }
-        })    
-    })
-  
-  
-    /*==================================================================
-    [ Validate ]*/
-    var input = $('.validate-input .input100');
-
-    $('.validate-form').on('submit',function(){
-        var check = true;
-
-        for(var i=0; i<input.length; i++) {
-            if(validate(input[i]) == false){
-                showValidate(input[i]);
-                check=false;
+                if($(input).val().trim() == ''){
+                    return false;
+                }
             }
         }
 
-        return check;
-    });
+        function showValidate(input) {
+            var thisAlert = $(input).parent();
 
-
-    $('.validate-form .input100').each(function(){
-        $(this).focus(function(){
-           hideValidate(this);
-        });
-    });
-
-    function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
+            $(thisAlert).addClass('alert-validate');
         }
-        else {
-            if($(input).val().trim() == ''){
-                return false;
-            }
-        }
-    }
 
-    function showValidate(input) {
-        var thisAlert = $(input).parent();
+        function hideValidate(input) {
+            var thisAlert = $(input).parent();
 
-        $(thisAlert).addClass('alert-validate');
-    }
-
-    function hideValidate(input) {
-        var thisAlert = $(input).parent();
-
-        $(thisAlert).removeClass('alert-validate');
-    }
-    
-    /*==================================================================
-    [ Show pass ]*/
-    var showPass = 0;
-    $('.btn-show-pass').on('click', function(){
-        if(showPass == 0) {
-            $(this).next('input').attr('type','text');
-            $(this).find('i').removeClass('zmdi-eye');
-            $(this).find('i').addClass('zmdi-eye-off');
-            showPass = 1;
-        }
-        else {
-            $(this).next('input').attr('type','password');
-            $(this).find('i').addClass('zmdi-eye');
-            $(this).find('i').removeClass('zmdi-eye-off');
-            showPass = 0;
+            $(thisAlert).removeClass('alert-validate');
         }
         
-    });
+        /*==================================================================
+        [ Show pass ]*/
+        var showPass = 0;
+        $('.btn-show-pass').on('click', function(){
+            if(showPass == 0) {
+                $(this).next('input').attr('type','text');
+                $(this).find('i').removeClass('zmdi-eye');
+                $(this).find('i').addClass('zmdi-eye-off');
+                showPass = 1;
+            }
+            else {
+                $(this).next('input').attr('type','password');
+                $(this).find('i').addClass('zmdi-eye');
+                $(this).find('i').removeClass('zmdi-eye-off');
+                showPass = 0;
+            }
+            
+        });
 
 
-})(jQuery);
+    })(jQuery);
+}
 
 
 /*----end validation login screen --*/
@@ -175,8 +178,12 @@ function addToCartClicked(event) {
     var shopItem = button.parentElement.parentElement
     var title = shopItem.getElementsByClassName('itemName')[0].innerText
     var price = shopItem.getElementsByClassName('itemPrice')[0].innerText
-    addItemToCart(title, price)
-    updateCartTotal()
+    var qty = document.getElementByClassName
+    
+
+        addItemToCart(title, price)
+        updateCartTotal()
+    
 }
 
 function addItemToCart(title, price) {
@@ -186,8 +193,9 @@ function addItemToCart(title, price) {
     var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
     for (var i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText == title) {
-            alert('This item is already added to the cart')
-            return
+            
+            /*alert('This should not happen')
+            return*/
         }
     }
 
@@ -203,10 +211,11 @@ function addItemToCart(title, price) {
     var cartRowContents = `
         <div class="cart-item cart-column">
             <span class="cart-item-title">${title}</span>
-            <span class="cart-price cart-column">${price}</span>
+            <span class="cart-price cart-column">£${price}</span>
+            <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
             <input class="cart-quantity-input" type="number" value="1">
             <input type="number" name="qty" min="1" max="100">
-            <button class="btn btn-danger" type="button">REMOVE</button>
+            
         </div>
         
        `
