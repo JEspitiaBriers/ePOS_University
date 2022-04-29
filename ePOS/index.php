@@ -5,6 +5,19 @@
     //DJ general notes 20/04
     //
 
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+    if (!$connection)
+    {
+        die("Connection failed: " . $mysqli_connect_error);
+    }
+
+    $productsQuery = "SELECT * FROM products";
+    $resultProductsQuery = mysqli_query($connection, $productsQuery);
+    $nProducts = mysqli_num_rows($resultProductsQuery);
+    $ean13=0;
+
+
     if (isset($_SESSION['loggedin'])) {
 
         echo <<<HEREDOC
@@ -47,69 +60,52 @@
                                     <input type="text" id="myInput" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for names.." title="Type in a name">
                                 </div>
                                 <div id="listOfItems" class="p-4">
-                                    <div class="item">
-                                        <div>
-                                            <img class="img"src="images/products/water-250.png">
-                                            <div class="itemName">Water</div>
-                                            <div class="itemDetails">
-                                                <span hidden class="itemPrice">0.75</span>
-                                                <span hidden class="EAN13">5000167079470</span>
-                                            </div>
-                                        </div>
-                                    </div>
+        HEREDOC;
 
-                                    <div class="item">
-                                        <div>
-                                            <img class="img"src="images/products/coke-250.png">
-                                            <div class="itemName">Coke</div>
-                                            <div class="itemDetails">
-                                                <span hidden class="itemPrice">1.50</span>
-                                            </div>
-                                        </div>
-                                    </div>
+        if ($nProducts > 0){
 
-                                    <div class="item">
-                                        <div>
-                                            <img class="img"src="images/products/fanta-250.png">
-                                            <div class="itemName">Fanta</div>
-                                            <div class="itemDetails">
-                                                <span hidden class="itemPrice">1.50</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                        
-                                    <div class="item">
-                                        <div>
-                                            <img class="img"src="images/products/redbull-250.png">
-                                            <div class="itemName">RedBull</div>
-                                            <div class="itemDetails">
-                                                <span hidden class="itemPrice">2.50</span>
-                                            </div>
-                                        </div>
-                                    </div>
+            for ($i=0; $i<$nProducts; $i++) 
+            {
 
-                                    <div class="item">
-                                        <div>
-                                            <div class="img">No picture</div>
-                                            <div class="itemName">Beer</div>
-                                            <div class="itemDetails">
-                                                <span hidden class="itemPrice">3.50</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                                    <div class="item">
-                                        <div>
-                                            <img class="img"src="images/products/orangejuice.png">
-                                            <div class="itemName">Orange Juice</div>
-                                            <div class="itemDetails">
-                                                <span hidden class="itemPrice">1.20</span>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                
-                                </div>
+                while ($row = mysqli_fetch_assoc($resultProductsQuery)){
+                    $productID = $row['productID'];
+                    $productName = $row['product_name'];
+                    $price = $row['price'];
+                    $product_description = $row['product_description'];
+                    $number_sold = $row['number_sold'];
+                    $pic_url = $row['product_image'];
+                    $ean13 = $row['EAN13'];
+
+                
+
+                echo <<<HEREDOC
+                <div class="item">
+                    <div>
+                        <img class="img"src="$pic_url">
+                        <div class="itemName">$productName</div>
+                        <div class="itemDetails">
+                            <span hidden class="itemPrice">$price</span>
+                            <span hidden class="EAN13">$ean13</span>
+                        </div>
+                    </div>
+                </div>
+
+                HEREDOC;
+
+                }
+
+            }
+        }
+
+        else{
+            echo "No products yet";
+        }
+
+        echo <<<HEREDOC
+                                    
+
+                                </div> 
                             </div>
                             <div id="checkout" class="col border-start border-dark">
                                 Checkout
