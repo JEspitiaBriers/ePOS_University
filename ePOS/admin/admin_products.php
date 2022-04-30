@@ -108,6 +108,6 @@ echo <<<_END
     <div>
 _END;
 
-//require 'footer.php';
+require '../footer.php';
 
 ?>

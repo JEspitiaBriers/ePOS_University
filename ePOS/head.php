@@ -7,12 +7,15 @@ session_start();
 //and end session either after a logout or time out
 //22/04 - DJ - onload display ct should change the H6 div id'd s clock, however it does not.
 
+/*
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 //display error message if failed to connect
 if (!$connection)
 {
     die("Connection failed: " . $mysqli_connect_error);
 }
+*/
+
 
 echo <<<_END
 
@@ -32,8 +35,14 @@ echo <<<_END
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body onload = "display_ct">
+        <nav class = "navbar"></nav>
+    
+
+
 
 _END;
+
+//<a href="logout.php">Logout</a>
 //changing the nav bar based off user access level
 if(isset($_SESSION['loggedIn']) && $_SESSION['job_role'] == "Boss" ){
 
