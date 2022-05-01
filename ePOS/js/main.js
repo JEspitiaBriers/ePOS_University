@@ -217,7 +217,7 @@ function addItemToCart(title, price, pid) {
             <span class="cart-price cart-column">
             <input hidden name="itemPrice[]" value="${price}">
             £${price}</span>
-            <input hidden class="pid" name="pid[]" value=${pid}">
+            <input hidden class="pid" name="pid[]" value="${pid}">
             <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
             <input class="cart-quantity-input" type="number" value="1">            
         </div>
