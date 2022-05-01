@@ -69,7 +69,6 @@
                     $productName = $row['product_name'];
                     $price = $row['price'];
                     $product_description = $row['product_description'];
-                    $number_sold = $row['number_sold'];
                     $pic_url = $row['product_image'];
                     $ean13 = $row['EAN13'];
 
