@@ -181,6 +181,7 @@ function addToCartClicked(event) {
     var pid = shopItem.getElementsByClassName('pid')[0].innerText
     
     
+    
 
         addItemToCart(title, price, pid)
         updateCartTotal()
@@ -219,7 +220,7 @@ function addItemToCart(title, price, pid) {
             £${price}</span>
             <input hidden class="pid" name="pid[]" value="${pid}">
             <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
-            <input class="cart-quantity-input" type="number" value="1">            
+            <input class="cart-quantity-input" name="quantity[]" type="number" value="1">            
         </div>
         
        `
@@ -242,7 +243,9 @@ function updateCartTotal() {
         total = total + (price * quantity)
     }
     total = Math.round(total * 100) / 100
-    document.getElementsByClassName('cart-total-price')[0].innerText = '£' + total
+    document.getElementsByClassName('cart-total-price')[0].innerText = "£" + total
+    document.getElementById('total').setAttribute('value', total)
+    document.getElementById('submit').removeAttribute('disabled')
 }
 
 

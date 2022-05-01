@@ -111,9 +111,18 @@
                                     <div class="cart-total">
                                         <strong class="cart-total-title">Total</strong>
                                         <span class="cart-total-price">£0</span>
+                                        <input hidden id="total" name="total" value="error">
                                     </div>
                                     <div class="checkoutButton">
-                                        <button class="btn btn-warning btn-lg btn-block" type="submit">Checkout</button>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="payment" id="CASH" value="CASH" checked="checked" />
+                                            <label class="form-check-label" for="CASH">Cash</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="payment" id="CARD" value="CARD" />
+                                            <label class="form-check-label" for="CARD">Card</label>
+                                        </div>
+                                        <button id="submit" class="btn btn-warning btn-lg btn-block" type="submit" disabled>Checkout</button>
                                     </div>
                                 </form>
                             </div>
