@@ -13,5 +13,6 @@ echo <<<_END
 
 _END;
 
+mysqli_close($connection);
 
 ?>

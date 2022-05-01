@@ -5,12 +5,8 @@
     //DJ general notes 20/04
     //
 
-    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  
 
-    if (!$connection)
-    {
-        die("Connection failed: " . $mysqli_connect_error);
-    }
 
     $productsQuery = "SELECT * FROM products";
     $resultProductsQuery = mysqli_query($connection, $productsQuery);
