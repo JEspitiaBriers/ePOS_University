@@ -1,13 +1,6 @@
 <?php
 require_once "head.php";
 
-if(isset($_SESSION['orderID'])){
-    echo "Create Receipt <br> the current orderID is " . $_SESSION['orderID'] . "<br><br>";
-}
-else{
-    echo "create receipt <br> session orderID not set";
-}
-
 $checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);
 $orderResults = mysqli_num_rows($checkOrder);
@@ -18,7 +11,6 @@ if($orderResults == 0) {
 $purchaseDetails = mysqli_fetch_assoc($checkOrder)['products'];
 
 $orderContents = json_decode(file_get_contents("ordersFolder/{$purchaseDetails}"), true);
-print_r($orderContents);
 
 $serverName = "*********User currently logged in******";
 $dateOfPurchase = date('d/m/y');
@@ -45,23 +37,20 @@ for($i = 0; $i < count($orderContents['Products Selected']['Item']); $i++){
     echo "<tr>";
     echo "<td>{$orderContents['Products Selected']['Qty'][$i]}</td>";
     echo "<td>{$orderContents['Products Selected']['Item'][$i]}</td>";
-    echo "<td>{$orderContents['Products Selected']['Price'][$i]}</td>";
-    echo "<td>{$price}</td>";
+    echo "<td>£{$orderContents['Products Selected']['Price'][$i]}</td>";
+    echo "<td>£{$price}</td>";
     echo "</tr>";
 }
 echo <<<END
     </table>
     Total Cost: £{$orderContents['Total Cost']}<br>
-    
+    {$orderContents['Payment Type']}: £{$orderContents['Total Cost']}<br>
 END;
 if($orderContents['Payment Type'] == "CASH"){
     $change = "Total cost - Cash input";
         echo "
-        {$orderContents['Payment Type']}: {$orderContents['Total Cost']} *************We need a cash input to calculate change*******<br>
+        *************We need a cash input to calculate change*******<br>
         Change Due: £{$change}<br>";
-}
-else {
-        echo "{$purchaseDetails['payment_type']}: £{$purchaseDetails['total_cost']}<br>";
 }
 echo <<<END
         -------------------------------------------<br>

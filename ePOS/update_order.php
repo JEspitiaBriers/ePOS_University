@@ -5,24 +5,7 @@ $_SESSION['orderID'] = '5';
 $numOfProd = 0;
 $prodSelectArray = Array();
 $prodSelect = Array();
-if(isset($_SESSION['orderID'])){
-    echo "Update Order <br> the current orderID is " . $_SESSION['orderID'] . "<br><br>";
-    print_r($_GET['itemTitle']); 
-    echo "<br>";
-    print_r($_GET['itemPrice']);
-    echo "<br>";
-    print_r($_GET['pid']);
-    echo "<br>";
-    print_r($_GET['total']);
-    echo "<br>";
-    print_r($_GET['payment']);
-    echo "<br>";
-    print_r($_GET['quantity']);
-    echo "<br><br>";
-}
-else{
-    echo "update order <br> session orderID not set";
-}
+
 //it should be incremented from the highest value if the order is new
 //checks if the order already exists
 $checkQuery = "SELECT * FROM orders WHERE orderID = {$_SESSION['orderID']}";
@@ -36,7 +19,6 @@ if($orderResults == 0) {
         $queryNewID = "SELECT MAX(orderID) FROM orders";
         $getNewID = mysqli_query($connection, $queryNewID);
         $newID = mysqli_fetch_assoc($getNewID);
-        echo $newID['MAX(orderID)'];
         $_SESSION['orderID'] = $newID['MAX(orderID)'];
     }
     else
@@ -49,8 +31,6 @@ for($i=0; $i < count($_GET['quantity']); $i++){
     $numOfProd += $_GET['quantity'][$i];
     $prodSelectArray = array_merge($prodSelectArray, $prodSelect);
     $prodSelect = Array ("Qty" => $_GET['quantity'], "Item" => $_GET['itemTitle'], "Price" => $_GET['itemPrice']);
-    echo $i;
-    echo "<br>";
 }
 
 $purchase = Array (
@@ -73,7 +53,10 @@ $orderFile = file_put_contents("ordersFolder/order{$_SESSION['orderID']}.json", 
 $updateProducts = "UPDATE orders SET products = '".$fileName."' WHERE orderID = {$_SESSION['orderID']}";
 $updated = mysqli_query($connection, $updateProducts);
 if(!$updated){
-    echo "Error Updating";
+    echo "Error Updating Order {$_SESSION['orderID']}";
+}
+else {
+    echo "Order {$_SESSION['orderID']} has successfully been updated!";
 }
 echo <<<END
 <form action="createReceipt.php">   
