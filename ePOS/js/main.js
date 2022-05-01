@@ -147,7 +147,7 @@ function ready() {
         button.addEventListener('click', addToCartClicked)
     }
 
-    document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+    //document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 }
 
 function purchaseClicked() {
@@ -178,15 +178,16 @@ function addToCartClicked(event) {
     var shopItem = button.parentElement.parentElement
     var title = shopItem.getElementsByClassName('itemName')[0].innerText
     var price = shopItem.getElementsByClassName('itemPrice')[0].innerText
-    var qty = document.getElementByClassName
+    var pid = shopItem.getElementsByClassName('pid')[0].innerText
+    
     
 
-        addItemToCart(title, price)
+        addItemToCart(title, price, pid)
         updateCartTotal()
     
 }
 
-function addItemToCart(title, price) {
+function addItemToCart(title, price, pid) {
     var cartRow = document.createElement('div')
     cartRow.classList.add('cart-row')
     var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -210,12 +211,15 @@ function addItemToCart(title, price) {
 
     var cartRowContents = `
         <div class="cart-item cart-column">
-            <span class="cart-item-title">${title}</span>
-            <span class="cart-price cart-column">£${price}</span>
+            <span class="cart-item-title">
+            <input hidden name="itemTitle[]" value="${title}">
+            ${title}</span>
+            <span class="cart-price cart-column">
+            <input hidden name="itemPrice[]" value="${price}">
+            £${price}</span>
+            <input hidden class="pid" name="pid[]" value=${pid}">
             <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
-            <input class="cart-quantity-input" type="number" value="1">
-            <input type="number" name="qty" min="1" max="100">
-            
+            <input class="cart-quantity-input" type="number" value="1">            
         </div>
         
        `

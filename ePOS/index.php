@@ -83,6 +83,7 @@
                         <div class="itemDetails">
                             <span hidden class="itemPrice">$price</span>
                             <span hidden class="EAN13">$ean13</span>
+                            <span hidden class="pid">$productID</span>
                         </div>
                     </div>
                 </div>
@@ -104,19 +105,17 @@
                                 </div> 
                             </div>
                             <div id="checkout" class="col border-start border-dark">
-                                Checkout
-
-                                <div class="cart-items">
-                                </div>
-                                <div class="cart-total">
-                                    <strong class="cart-total-title">Total</strong>
-                                    <span class="cart-total-price">£0</span>
-                                </div>
-                                <div class="checkoutButton">
-                                    <button class="btn btn-warning btn-lg btn-block" type="button">Checkout</button>
-                                </div>
-
-                                
+                                <form action="test.php" method="GET">
+                                    <div class="cart-items">
+                                    </div>
+                                    <div class="cart-total">
+                                        <strong class="cart-total-title">Total</strong>
+                                        <span class="cart-total-price">£0</span>
+                                    </div>
+                                    <div class="checkoutButton">
+                                        <button class="btn btn-warning btn-lg btn-block" type="submit">Checkout</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
