@@ -8,31 +8,21 @@ else{
     echo "create receipt <br> session orderID not set";
 }
 
-$checkQuery = "SELECT * FROM orders WHERE orderID = {$_SESSION['orderID']}";
+$checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);
 $orderResults = mysqli_num_rows($checkOrder);
 if($orderResults == 0) {
     echo "Error getting order file for order {$_SESSION['orderID']} (receipt).";
 }
 
-$purchaseDetails = mysqli_fetch_assoc($checkOrder);
+$purchaseDetails = mysqli_fetch_assoc($checkOrder)['products'];
 
-$orderContents = file_get_contents("ordersFolder/{$purchaseDetails['products']}");
-$contentsArray = json_decode($orderContents, true);
-$selected = $contentsArray["Products Selected"];
+$orderContents = json_decode(file_get_contents("ordersFolder/{$purchaseDetails}"), true);
+print_r($orderContents);
 
-/*change due*/
-if($purchaseDetails['payment_type'] == "CARD"){
-    $change = 0;
-}
-else {
-    $amountPaid  = rand(0, 5) + $purchaseDetails['total_cost'];//to be entered during checkout screen
-    $change = $amountPaid - $purchaseDetails['total_cost'];
-}
-
-$serverName = "Self-Service";
-$dateOfPurchase = "01/01/01";
-$timeOfPurchase = "01:01:01";
+$serverName = "*********User currently logged in******";
+$dateOfPurchase = date('d/m/y');
+$timeOfPurchase = date('H:i:s');
 echo <<<END
     <div class="receiptCenter">
         <img src="images/logoweb.png" id="logoweb">
@@ -40,7 +30,7 @@ echo <<<END
         All Saints Campus, Metropolitan University, <br>
         Manchester M15 6BH <br> <br>
         Store: C0.17, TEL: 0161 123 1234 <br>
-        Order: {$_SESSION['orderID']} Number of Items: {$purchaseDetails['number_of_products']}<br>
+        Order: {$_SESSION['orderID']} Number of Items: {$orderContents['Number of Products']}<br>
         -------------------------------------------<br>
         <table>
         <tr>
@@ -50,27 +40,24 @@ echo <<<END
             <th>Total</th>
         </tr>
 END;
-foreach ($selected as $Qty=>$item){
+for($i = 0; $i < count($orderContents['Products Selected']['Item']); $i++){
+    $price = $orderContents['Products Selected']['Qty'][$i] * $orderContents['Products Selected']['Price'][$i];
     echo "<tr>";
-    $priceQuery = "SELECT price FROM products WHERE productID = 1"; //WHERE product_name = {stroupper($item)}
-    $priceCheck = mysqli_query($connection, $priceQuery);
-    $priceResult = mysqli_fetch_assoc($priceCheck);
-    $price = floatval($priceResult['price']);
-    $Qty = floatval($Qty);
-    $priceQty = $price * $Qty;
-    echo "<td>{$Qty}</td>";
-    echo "<td>{$item}</td>";
-    echo "<td>{$priceResult['price']}</td>";
-    echo "<td>{$priceQty}</td>";
+    echo "<td>{$orderContents['Products Selected']['Qty'][$i]}</td>";
+    echo "<td>{$orderContents['Products Selected']['Item'][$i]}</td>";
+    echo "<td>{$orderContents['Products Selected']['Price'][$i]}</td>";
+    echo "<td>{$price}</td>";
     echo "</tr>";
 }
 echo <<<END
     </table>
-    Total Cost: £{$purchaseDetails['total_cost']}<br>
+    Total Cost: £{$orderContents['Total Cost']}<br>
+    
 END;
-if($purchaseDetails['payment_type'] == "CASH"){
+if($orderContents['Payment Type'] == "CASH"){
+    $change = "Total cost - Cash input";
         echo "
-        {$purchaseDetails['payment_type']}: £{$amountPaid}<br>
+        {$orderContents['Payment Type']}: {$orderContents['Total Cost']} *************We need a cash input to calculate change*******<br>
         Change Due: £{$change}<br>";
 }
 else {

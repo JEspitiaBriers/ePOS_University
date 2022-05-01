@@ -1,10 +1,24 @@
 <?php
 
 require_once "head.php";
-$isNewOrder = false;
-$_SESSION['orderID'] = '3';
+$_SESSION['orderID'] = '5';
+$numOfProd = 0;
+$prodSelectArray = Array();
+$prodSelect = Array();
 if(isset($_SESSION['orderID'])){
     echo "Update Order <br> the current orderID is " . $_SESSION['orderID'] . "<br><br>";
+    print_r($_GET['itemTitle']); 
+    echo "<br>";
+    print_r($_GET['itemPrice']);
+    echo "<br>";
+    print_r($_GET['pid']);
+    echo "<br>";
+    print_r($_GET['total']);
+    echo "<br>";
+    print_r($_GET['payment']);
+    echo "<br>";
+    print_r($_GET['quantity']);
+    echo "<br><br>";
 }
 else{
     echo "update order <br> session orderID not set";
@@ -19,7 +33,6 @@ if($orderResults == 0) {
     $newOrder = "INSERT INTO orders (orderID) VALUES ('');";
     if (mysqli_query($connection, $newOrder))
     {
-        $isNewOrder = true;
         $queryNewID = "SELECT MAX(orderID) FROM orders";
         $getNewID = mysqli_query($connection, $queryNewID);
         $newID = mysqli_fetch_assoc($getNewID);
@@ -32,15 +45,21 @@ if($orderResults == 0) {
     }
 }
 
+for($i=0; $i < count($_GET['quantity']); $i++){
+    $numOfProd += $_GET['quantity'][$i];
+    $prodSelectArray = array_merge($prodSelectArray, $prodSelect);
+    $prodSelect = Array ("Qty" => $_GET['quantity'], "Item" => $_GET['itemTitle'], "Price" => $_GET['itemPrice']);
+    echo $i;
+    echo "<br>";
+}
 
 $purchase = Array (
-    "Order number" => $_SESSION['orderID'],
-    "Products Selected" => Array(
-        "3x" => "Coke",
-        "1x" => "Water",
-        "2x" => "Fanta",
-        "4x" => "Chocolate Bar"
-    )
+    "Order Number" => $_SESSION['orderID'],
+    "Number of Products" => $numOfProd,
+    "Products Selected" => $prodSelectArray,
+    "Total Cost" => $_GET['total'],
+    "Payment Type" => $_GET['payment'],
+    "Payment Status" => "NO DATA TO BE FOUND"
 );
 
 //creates a json file for the order
@@ -51,28 +70,11 @@ $orderFile = file_put_contents("ordersFolder/order{$_SESSION['orderID']}.json", 
 //creating random data to fill the fields of a new order
 //data is only random for testing purposes.
 //Data will be inputed during item selection
-if($isNewOrder == true) {
-    $numOfPro = rand(1, 500);
-    if($numOfPro % 3 <= 1.5){
-        $payment_type = "CASH";
-    }
-    else {
-        $payment_type = "CARD";
-    }
-    if($numOfPro % 6 >= 3) {
-        $payment_status = "AWAITING";
-    }
-    else {
-        $payment_status = "RECEIVED";
-    }
-    $updateProducts = "UPDATE orders SET number_of_products = '".$numOfPro."', products = '".$fileName."', total_cost = '". 1.20 * $numOfPro ."',
-     payment_type = '".$payment_type."', payment_status = '".$payment_status."' WHERE orderID = {$_SESSION['orderID']}";
+$updateProducts = "UPDATE orders SET products = '".$fileName."' WHERE orderID = {$_SESSION['orderID']}";
+$updated = mysqli_query($connection, $updateProducts);
+if(!$updated){
+    echo "Error Updating";
 }
-else {
-    $updateProducts = "UPDATE orders SET products = '".$fileName."' WHERE orderID = {$_SESSION['orderID']}";
-}
-mysqli_query($connection, $updateProducts);
-
 echo <<<END
 <form action="createReceipt.php">   
     <input type="submit" value="Print Receipt">

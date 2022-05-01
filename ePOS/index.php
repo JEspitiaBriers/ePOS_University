@@ -17,10 +17,6 @@
     if (isset($_SESSION['loggedin'])) {
 
         echo <<<HEREDOC
-            
-                <form action="update_order.php">   
-                <input type="submit" value="Checkout">
-                </form>
                 <a href="logout.php">Logout</a>
             
 
@@ -104,7 +100,7 @@
                                 </div> 
                             </div>
                             <div id="checkout" class="col border-start border-dark">
-                                <form action="test.php" method="GET">
+                                <form action="update_order.php" method="GET">
                                     <div class="cart-items">
                                     </div>
                                     <div class="cart-total">

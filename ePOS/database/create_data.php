@@ -210,7 +210,6 @@ function GenerateUsername ($firstname, $lastname) {
     return $userID;
 }
 
-
 //testing data for products table
 $product_name[] = "WATER"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $product_image[] = "images/products/water-250.png"; $EAN13[] = "5000167079470";
 $product_name[] = "COKE"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "images/products/coke-250.png"; $EAN13[] = "0000000000000";
@@ -219,12 +218,6 @@ $product_name[] = "REDBULL"; $price[] = "1.25"; $product_description[] = "330ml 
 $product_name[] = "CHOCOLATE"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $product_image[] = "images/products/chocolatebar.png"; $EAN13[] = "0000000000000";
 $product_name[] = "SHIRT M"; $price[] = "15.25"; $product_description[] = "medium sized plain shirt"; $product_image[] = "images/products/shirt.png"; $EAN13[] = "0000000000000";
 $product_name[] = "BOOK"; $price[] = "10.99"; $product_description[] = "200 page book"; $product_image[] = "images/products/book.png"; $EAN13[] = "0000000000000";
-
-
-
-
-
-
 
 for ($i = 0; $i<count($product_name); $i++){
     $populateProducts = "INSERT INTO products (productID, product_name, price, product_description, product_image, EAN13) VALUES (
@@ -275,17 +268,6 @@ while($row = mysqli_fetch_assoc($findProductsExe)){
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //testing data for orders table
 $number_of_products[] = "77"; $products[] = "MUST"; $total_cost[] = "197.58"; $payment_type[] = "CARD"; $payment_status[] = "AWAITING"; 
