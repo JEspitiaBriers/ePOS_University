@@ -248,5 +248,26 @@ function updateCartTotal() {
     document.getElementById('submit').removeAttribute('disabled')
 }
 
+//Jamie 01/05/2022
+$(document).ready(function() {
+    $("input[name='payment']").change(function() {
+        if ($(this).val() == "CASH") {
+            $("#cashBox").show();
+        } else {
+            $("#cashBox").hide();
+        }
+    });
+});
+
+function cashSet(){
+    if(document.getElementsByName('payment') == "CASH")
+    {
+        document.getElementById('cashBox').setAttribute('required', true);
+    }
+    else
+    {
+        document.getElementById('cashBox').setAttribute('required', false);
+    }
+}
 
 /*--------End checkout----------*/
