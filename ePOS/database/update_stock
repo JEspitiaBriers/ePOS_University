@@ -1,0 +1,32 @@
+<?php
+//wait 24 hours, grab the data from JSON/ end of day(basically just how much each product sold)
+//then update the database,
+
+
+//grab the counters for each product, will need their ID so i can match it in my db
+//update the product stock(take away the amount sold) and the amount sold
+
+$prodID = ""; //need this so we can actually update em
+
+$amount_sold = 0;//grab this data
+$product_stock = 0 - $amount_sold;//need to get the current amount of stock in db, will need to read it
+
+$date = date("Y/m/d");//technically the next day
+
+function trigger(){
+    //wait 24 hours?
+    //run update stock after 24 hours
+}
+
+
+function updateStock(){
+    //grab json / data which is - id of product, amount sold
+    //update the tables
+    //done?
+
+}
+
+
+
+
+?>
