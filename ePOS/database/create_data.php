@@ -46,6 +46,17 @@ else
 {
     die("Error checking for existing table: staff -> " . mysqli_error($connection));
 }
+$dropStock = "DROP TABLE IF EXISTS stock";
+
+// no data returned, check for drop success/failure:
+    if (mysqli_query($connection, $dropStock))
+{
+    echo "Dropped existing table: stock<br>";
+}
+else
+{
+    die("Error checking for existing table: stock -> " . mysqli_error($connection));
+}
 
 //---PRODUCTS TABLE
 //drop table if it already exists
@@ -74,6 +85,17 @@ else
 {
     die("Error checking for existing table: orders -> " . mysqli_error($connection));
 }
+
+
+
+
+
+
+
+
+
+
+
 //----------END: table droppping (used to reset tables during development)
 
 
@@ -93,7 +115,7 @@ else
 }
 
 //create products table:
-$createProducts = "CREATE TABLE products (productID INT(10) AUTO_INCREMENT, product_name VARCHAR(16), price FLOAT(23), product_description VARCHAR(50), product_image VARCHAR(255), number_sold INT(10), EAN13 VARCHAR(13), PRIMARY KEY(productID));";
+$createProducts = "CREATE TABLE products (productID INT(10) AUTO_INCREMENT, product_name VARCHAR(16), price FLOAT(23), product_description VARCHAR(50), product_image VARCHAR(255), EAN13 VARCHAR(13), PRIMARY KEY(productID));";
 
 // no data returned, check for drop success/failure:
 if (mysqli_query($connection, $createProducts))
@@ -119,6 +141,19 @@ else
 {
     die("Error creating table: orders -> " . mysqli_error($connection));
 }
+
+
+
+$createStock = "CREATE TABLE stock(stockID INT(10) AUTO_INCREMENT, productID INT(10) NOT NULL, product_stock INT(100) NOT NULL,number_sold INT(100) NOT NULL, dateChecked DATE NOT NULL, PRIMARY KEY(stockID),CONSTRAINT FK_productID FOREIGN KEY (productID) REFERENCES products(productID) );" ;
+if (mysqli_query($connection, $createStock))
+{
+    echo "Table created successfully: stock<br>";
+}
+else
+{
+    die("Error creating table: stock -> " . mysqli_error($connection));
+}
+
 //----------END: table creation
 
 
@@ -177,16 +212,23 @@ function GenerateUsername ($firstname, $lastname) {
 
 
 //testing data for products table
-$product_name[] = "WATER"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $product_image[] = "images/products/water-250.png"; $number_sold[] = "21854" ; $EAN13[] = "5000167079470";
-$product_name[] = "COKE"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "images/products/coke-250.png"; $number_sold[] = "37854"; $EAN13[] = "0000000000000";
-$product_name[] = "FANTA"; $price[] = "1.00"; $product_description[] = "330ml can of fanta"; $product_image[] = "images/products/fanta-250.png"; $number_sold[] = "31500"; $EAN13[] = "0000000000000";
-$product_name[] = "REDBULL"; $price[] = "1.25"; $product_description[] = "330ml can of redbull"; $product_image[] = "images/products/redbull-250.png"; $number_sold[] = "11023"; $EAN13[] = "0000000000000";
-$product_name[] = "CHOCOLATE"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $product_image[] = "images/products/chocolatebar.png"; $number_sold[] = "17697"; $EAN13[] = "0000000000000";
-$product_name[] = "SHIRT M"; $price[] = "15.25"; $product_description[] = "medium sized plain shirt"; $product_image[] = "images/products/shirt.png"; $number_sold[] = "891"; $EAN13[] = "0000000000000";
-$product_name[] = "BOOK"; $price[] = "10.99"; $product_description[] = "200 page book"; $product_image[] = "images/products/book.png"; $number_sold[] = "3"; $EAN13[] = "0000000000000";
+$product_name[] = "WATER"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $product_image[] = "images/products/water-250.png"; $EAN13[] = "5000167079470";
+$product_name[] = "COKE"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "images/products/coke-250.png"; $EAN13[] = "0000000000000";
+$product_name[] = "FANTA"; $price[] = "1.00"; $product_description[] = "330ml can of fanta"; $product_image[] = "images/products/fanta-250.png"; $EAN13[] = "0000000000000";
+$product_name[] = "REDBULL"; $price[] = "1.25"; $product_description[] = "330ml can of redbull"; $product_image[] = "images/products/redbull-250.png"; $EAN13[] = "0000000000000";
+$product_name[] = "CHOCOLATE"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $product_image[] = "images/products/chocolatebar.png"; $EAN13[] = "0000000000000";
+$product_name[] = "SHIRT M"; $price[] = "15.25"; $product_description[] = "medium sized plain shirt"; $product_image[] = "images/products/shirt.png"; $EAN13[] = "0000000000000";
+$product_name[] = "BOOK"; $price[] = "10.99"; $product_description[] = "200 page book"; $product_image[] = "images/products/book.png"; $EAN13[] = "0000000000000";
+
+
+
+
+
+
+
 for ($i = 0; $i<count($product_name); $i++){
-    $populateProducts = "INSERT INTO products (productID, product_name, price, product_description, product_image, number_sold, EAN13) VALUES (
-        '', '$product_name[$i]', '{$price[$i]}', '$product_description[$i]', '$product_image[$i]', '$number_sold[$i]', '$EAN13[$i]');";
+    $populateProducts = "INSERT INTO products (productID, product_name, price, product_description, product_image, EAN13) VALUES (
+        '', '$product_name[$i]', '{$price[$i]}', '$product_description[$i]', '$product_image[$i]', '$EAN13[$i]');";
     if (mysqli_query($connection, $populateProducts))
     {
         echo "row inserted (product)<br>";
@@ -196,6 +238,53 @@ for ($i = 0; $i<count($product_name); $i++){
         die("Error inserting row: product -> " . mysqli_error($connection));
     }
 }
+//stock data
+//select product ID, insert those into col along with the other data
+//stock id, prodid, prod stock, num sold, datechecked
+//table needs to update with this data from the json every day, alongwith a timestamp for that day so you can see its different.
+//so wed need a function too for this, ticking every sec for 24 hours until it reaches it, grabs the data for that current day and updates the db tables(inserts the new rows)
+
+$date = date("Y/m/d H:i:s");
+//$date_checked[] = $date;
+
+
+
+
+
+$id = "";
+$findProducts = "SELECT * FROM products";
+
+$findProductsExe = mysqli_query($connection,$findProducts);
+while($row = mysqli_fetch_assoc($findProductsExe)){
+    
+    $stock_sold = rand(1,15); 
+    $stock_data = rand(1,100);
+    
+    $id = $row["productID"];
+
+    $populateStock = "INSERT INTO stock(productID, product_stock, number_sold, dateChecked)
+     VALUES('{$id}','$stock_data','$stock_sold','{$date}');";
+
+    if (mysqli_query($connection, $populateStock))
+    {
+        echo "row inserted (stock)<br>";
+    }
+    else
+    {
+        die("Error inserting row: stock -> " . mysqli_error($connection));
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
 
 
 //testing data for orders table
@@ -222,3 +311,6 @@ for($i=0; $i<count($number_of_products); $i++){
 //close connection to database
 mysqli_close($connection);
 ?>
+
+
+ 
