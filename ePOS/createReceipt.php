@@ -50,10 +50,8 @@ echo <<<END
     {$orderContents['Payment Type']}: £{$orderContents['Total Cost']}<br>
 END;
 if($orderContents['Payment Type'] == "CASH"){
-    $change = "Total cost - Cash input";
-        echo "
-        *************We need a cash input to calculate change*******<br>
-        Change Due: £{$change}<br>";
+    echo "Cash Given: £{$orderContents['Cash Given']}<br>
+        Change Returned: £{$orderContents['Change Returned']}<br>";
 }
 echo <<<END
         -------------------------------------------<br>

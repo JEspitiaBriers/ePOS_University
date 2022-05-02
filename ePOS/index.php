@@ -13,7 +13,6 @@
     $nProducts = mysqli_num_rows($resultProductsQuery);
     $ean13=0;
 
-
     if (isset($_SESSION['loggedin'])) {
 
         echo <<<HEREDOC
@@ -100,7 +99,7 @@
                                 </div> 
                             </div>
                             <div id="checkout" class="col border-start border-dark">
-                                <form action="update_order.php" method="GET">
+                                <form action="setSessVars.php" method="GET">
                                     <div class="cart-items">
                                     </div>
                                     <div class="cart-total">
