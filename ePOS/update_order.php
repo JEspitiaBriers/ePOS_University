@@ -32,7 +32,8 @@ if($_SESSION['payment'] == 'CASH' && $_SESSION['cashGiven'] < $_SESSION['total']
     header("Refresh:2; url=index.php");
 }
 else if($_SESSION['payment'] == 'CASH' && !$_SESSION['changeGiven']){
-    Header("Location: http://localhost/ePOS_University/ePOS/cashAndChange.php");
+    //Header("Location: http://localhost/ePOS_University/ePOS/cashAndChange.php");
+    Header("Location: cashAndChange.php");
 }
 else {
     if(count($_SESSION['quantity']) == 1){
