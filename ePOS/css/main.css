@@ -652,7 +652,7 @@ th, td {
     box-sizing: border-box;
   }
   
-  #myInput {
+  #Input {
     background-image: url('../images/icons/search.png');
     background-position: 10px 12px;
     background-repeat: no-repeat;
