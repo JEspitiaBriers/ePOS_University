@@ -40,16 +40,12 @@
                     <div id="itemsContainer" class="container border-start border-end border-dark">
                         <div class="row">
                             <div id="itemsSelection" class="col-9 border-dark">
+                                <br>
                                 <nav class="col ">
-                                    <div class="row">
-                                        <div class="col">Option1</div>
-                                        <div class="col">Option2</div>
-                                        <div class="col">Option3</div>
-                                        <div class="col">Option4</div>
-                                    </div>
+                                  
                                 </nav>
                                 <div class="searchbar">
-                                    <input type="text" id="myInput" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for names.." title="Type in a name">
+                                    <input type="text" id="myInput" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for products.." title="Type in a name">
                                 </div>
                                 <div id="listOfItems" class="p-4">
         HEREDOC;
