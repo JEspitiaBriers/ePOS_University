@@ -212,7 +212,7 @@ function GenerateUsername ($firstname, $lastname) {
 
 //testing data for products table
 $product_name[] = "WATER"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $product_image[] = "images/products/water-250.png"; $EAN13[] = "5000167079470";
-$product_name[] = "COKE"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "images/products/coke-250.png"; $EAN13[] = "0000000000000";
+$product_name[] = "COKE"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "images/products/coke-250.png"; $EAN13[] = "5017726180034";
 $product_name[] = "FANTA"; $price[] = "1.00"; $product_description[] = "330ml can of fanta"; $product_image[] = "images/products/fanta-250.png"; $EAN13[] = "0000000000000";
 $product_name[] = "REDBULL"; $price[] = "1.25"; $product_description[] = "330ml can of redbull"; $product_image[] = "images/products/redbull-250.png"; $EAN13[] = "0000000000000";
 $product_name[] = "CHOCOLATE"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $product_image[] = "images/products/chocolatebar.png"; $EAN13[] = "0000000000000";

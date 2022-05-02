@@ -39,16 +39,12 @@
                     <div id="itemsContainer" class="container border-start border-end border-dark">
                         <div class="row">
                             <div id="itemsSelection" class="col-9 border-dark">
+                                <br>
                                 <nav class="col ">
-                                    <div class="row">
-                                        <div class="col">Option1</div>
-                                        <div class="col">Option2</div>
-                                        <div class="col">Option3</div>
-                                        <div class="col">Option4</div>
-                                    </div>
+                                  
                                 </nav>
                                 <div class="searchbar">
-                                    <input type="text" id="myInput" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for names.." title="Type in a name">
+                                    <input type="text" id="Input" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for products.." title="Type in a barcode">
                                 </div>
                                 <div id="listOfItems" class="p-4">
         HEREDOC;
@@ -116,8 +112,10 @@
                                             <input class="form-check-input" type="radio" name="payment" id="CARD" value="CARD" />
                                             <label class="form-check-label" for="CARD">Card</label>
                                         </div>
+                                        <div class="cashGiven">
                                         <label for="cashBox">Cash Given</label>
                                         <input type="number" id="cashBox" name="cashGiven" step=".01" placeholder="£0.00"/>
+                                        </div>
                                         <button id="submit" class="btn btn-warning btn-lg btn-block" type="submit" disabled>Checkout</button>
                                     </div>
                                 </form>

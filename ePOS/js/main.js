@@ -109,17 +109,25 @@ window.onload = function(){
 
 function searchbar() {
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("Input");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("listOfItems");
-    li = ul.getElementsByClassName("itemName");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
+    listOfItems = document.getElementById("listOfItems");
+    item = listOfItems.getElementsByClassName("item");
+    for (i = 0; i < item.length; i++) {
+        itemName = item[i].getElementsByClassName("itemName")[0];
+        itemEAN = item[i].getElementsByClassName("EAN13")[0];
+        txtValue = itemName.textContent || itemName.innerText;
+        txtValue2 = itemEAN.textContent || itemEAN.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
+            item[i].style.display = "";
+        } 
+        
+        else if(txtValue2.toUpperCase().indexOf(filter) > -1)
+        {
+            item[i].style.display = "";
+        }
+        else {
+            item[i].style.display = "none";
         }
     }
 }
@@ -149,7 +157,7 @@ function ready() {
 
     //document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 }
-
+/*
 function purchaseClicked() {
     alert('Thank you for your purchase')
     var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -158,7 +166,7 @@ function purchaseClicked() {
     }
     updateCartTotal()
 }
-
+*/
 function removeCartItem(event) {
     var buttonClicked = event.target
     buttonClicked.parentElement.parentElement.remove()
@@ -188,18 +196,23 @@ function addToCartClicked(event) {
     
 }
 
+
 function addItemToCart(title, price, pid) {
     var cartRow = document.createElement('div')
     cartRow.classList.add('cart-row')
+    debugger;
     var cartItems = document.getElementsByClassName('cart-items')[0]
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+    var cartItemNames = cartItems.getElementsByClassName('cart-quantity-input')
+    
     for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
-            
-            /*alert('This should not happen')
-            return*/
+        if (cartItemNames[i].getAttribute('fname') == title) {
+            let x = cartItemNames[i].value
+            const y = x++
+            cartItemNames[i].setAttribute("value",x)
+            return
         }
     }
+
 
     $(function numberlist(){
         var $select = $(".1-100");
@@ -220,7 +233,7 @@ function addItemToCart(title, price, pid) {
             £${price}</span>
             <input hidden class="pid" name="pid[]" value="${pid}">
             <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
-            <input class="cart-quantity-input" name="quantity[]" type="number" value="1">            
+            <input class="cart-quantity-input" name="quantity[]" type="number" fname="${title}" value="1">            
         </div>
         
        `
@@ -247,7 +260,7 @@ function updateCartTotal() {
     document.getElementById('total').setAttribute('value', total)
     document.getElementById('submit').removeAttribute('disabled')
 }
-
+/*
 //Jamie 01/05/2022
 $(document).ready(function() {
     $("input[name='payment']").change(function() {
