@@ -12,7 +12,10 @@ $purchaseDetails = mysqli_fetch_assoc($checkOrder)['products'];
 
 $orderContents = json_decode(file_get_contents("ordersFolder/{$purchaseDetails}"), true);
 
-$serverName = "*********User currently logged in******";
+$servedQuery = "SELECT firstname FROM staff WHERE username = '{$_SESSION['username']}'";
+$servedExe = mysqli_query($connection, $servedQuery);
+$servedResult = mysqli_fetch_assoc($servedExe);
+$serverName = $servedResult['firstname'];
 $dateOfPurchase = date('d/m/y');
 $timeOfPurchase = date('H:i:s');
 echo <<<END
@@ -54,7 +57,7 @@ if($orderContents['Payment Type'] == "CASH"){
 }
 echo <<<END
         -------------------------------------------<br>
-        Server: {$serverName} Date: {$dateOfPurchase} Time: {$timeOfPurchase}
+        Served By: {$serverName} Date: {$dateOfPurchase} Time: {$timeOfPurchase}
         </p>
     </div>
 END;
