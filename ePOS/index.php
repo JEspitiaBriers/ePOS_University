@@ -117,8 +117,10 @@
                                             <input class="form-check-input" type="radio" name="payment" id="CARD" value="CARD" />
                                             <label class="form-check-label" for="CARD">Card</label>
                                         </div>
+                                        <div class="cashGiven">
                                         <label for="cashBox">Cash Given</label>
                                         <input type="number" id="cashBox" name="cashGiven" step=".01" placeholder="£0.00"/>
+                                        </div>
                                         <button id="submit" class="btn btn-warning btn-lg btn-block" type="submit" disabled>Checkout</button>
                                     </div>
                                 </form>

@@ -188,18 +188,23 @@ function addToCartClicked(event) {
     
 }
 
+
 function addItemToCart(title, price, pid) {
     var cartRow = document.createElement('div')
     cartRow.classList.add('cart-row')
+    debugger;
     var cartItems = document.getElementsByClassName('cart-items')[0]
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+    var cartItemNames = cartItems.getElementsByClassName('cart-quantity-input')
+    
     for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
-            
-            /*alert('This should not happen')
-            return*/
+        if (cartItemNames[i].getAttribute('fname') == title) {
+            let x = cartItemNames[i].value
+            const y = x++
+            cartItemNames[i].setAttribute("value",x)
+            return
         }
     }
+
 
     $(function numberlist(){
         var $select = $(".1-100");
@@ -220,7 +225,7 @@ function addItemToCart(title, price, pid) {
             £${price}</span>
             <input hidden class="pid" name="pid[]" value="${pid}">
             <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
-            <input class="cart-quantity-input" name="quantity[]" type="number" value="1">            
+            <input class="cart-quantity-input" name="quantity[]" type="number" fname="${title}" value="1">            
         </div>
         
        `
@@ -247,7 +252,7 @@ function updateCartTotal() {
     document.getElementById('total').setAttribute('value', total)
     document.getElementById('submit').removeAttribute('disabled')
 }
-
+/*
 //Jamie 01/05/2022
 $(document).ready(function() {
     $("input[name='payment']").change(function() {
