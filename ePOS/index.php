@@ -45,7 +45,7 @@
                                   
                                 </nav>
                                 <div class="searchbar">
-                                    <input type="text" id="myInput" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for products.." title="Type in a name">
+                                    <input type="text" id="Input" autofocus="autofocus" onkeyup="searchbar()" placeholder="Search for products.." title="Type in a barcode">
                                 </div>
                                 <div id="listOfItems" class="p-4">
         HEREDOC;

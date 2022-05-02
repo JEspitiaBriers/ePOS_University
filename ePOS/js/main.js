@@ -109,17 +109,25 @@ window.onload = function(){
 
 function searchbar() {
     var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("Input");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("listOfItems");
-    li = ul.getElementsByClassName("itemName");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
+    listOfItems = document.getElementById("listOfItems");
+    item = listOfItems.getElementsByClassName("item");
+    for (i = 0; i < item.length; i++) {
+        itemName = item[i].getElementsByClassName("itemName")[0];
+        itemEAN = item[i].getElementsByClassName("EAN13")[0];
+        txtValue = itemName.textContent || itemName.innerText;
+        txtValue2 = itemEAN.textContent || itemEAN.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
+            item[i].style.display = "";
+        } 
+        
+        else if(txtValue2.toUpperCase().indexOf(filter) > -1)
+        {
+            item[i].style.display = "";
+        }
+        else {
+            item[i].style.display = "none";
         }
     }
 }
