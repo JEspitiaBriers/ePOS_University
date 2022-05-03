@@ -1,1 +1,1 @@
-{"Order Number":"4","Number of Products":2,"Products Selected":{"Qty":["1","1"],"Item":["FANTA","REDBULL"],"Price":["1","1.25"]},"Total Cost":"2.25","Payment Type":"CASH","Payment Status":"NO DATA TO BE FOUND"}
+{"Order Number":"4","Number of Products":6,"Products Selected":{"Qty":["1","2","2","1"],"Item":["FANTA","COKE","WATER","CHOCOLATE"],"Price":["1","1","1.25","0.75"]},"Total Cost":"6.25","Payment Type":"CARD","Payment Status":"NO DATA TO BE FOUND"}

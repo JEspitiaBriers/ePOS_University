@@ -1,11 +1,8 @@
 <?php
-    include "head.php";
+    require "head.php";
 
 
-    //DJ general notes 20/04
-    //
 
-  
 
 
     $productsQuery = "SELECT * FROM products";
@@ -19,7 +16,6 @@
                 <a href="logout.php">Logout</a>
             
 
-                <body>
                 <div class="checkoutButton position-absolute top-50 start-0">
                     <button class="btn btn-info btn-warning" type="button">Orders</button><br>
                     <button class="btn btn-info btn-warning" type="button">End of day process</button>
@@ -33,9 +29,12 @@
                         <img src="images/logoweb.png" id="logoweb">
                     </div>
                     <div class="workingArea">
-                    <div id="time" class="container border border-dark">
-                        Time + Date
-                    </div>
+                        <div class="container border border-dark">
+                            <h6 id = "hClock"></h6>
+                            
+                        </div>
+
+
                     <div id="itemsContainer" class="container border-start border-end border-dark">
                         <div class="row">
                             <div id="itemsSelection" class="col-9 border-dark">
