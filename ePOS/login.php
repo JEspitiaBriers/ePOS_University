@@ -111,7 +111,7 @@
 
             echo "Welcome {$_SESSION['username']}";
             //redirect to main after 3 secs
-            header("Refresh:2; url=index.php");
+            header("Refresh:2; url=orders.php");
 
             //query to save the database ID number in the session
 //

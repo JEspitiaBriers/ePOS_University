@@ -270,9 +270,9 @@ while($row = mysqli_fetch_assoc($findProductsExe)){
 }
 
 //testing data for orders table
-$number_of_products[] = "77"; $products[] = "MUST"; $total_cost[] = "197.58"; $payment_type[] = "CARD"; $payment_status[] = "AWAITING"; 
-$number_of_products[] = "12"; $products[] = "IMPLEMENT"; $total_cost[] = "51.82"; $payment_type[] = "CASH"; $payment_status[] = "RECEIVED"; 
-$number_of_products[] = "42"; $products[] = "JSON"; $total_cost[] = "42.00"; $payment_type[] = "CARD"; $payment_status[] = "RECEIVED"; 
+$number_of_products[] = "1"; $products[] = "order1.json"; $total_cost[] = "1"; $payment_type[] = "CARD"; $payment_status[] = "AWAITING"; 
+$number_of_products[] = "6"; $products[] = "order2.json"; $total_cost[] = "6.75"; $payment_type[] = "CASH"; $payment_status[] = "RECEIVED"; 
+$number_of_products[] = "4"; $products[] = "order3.json"; $total_cost[] = "42.74"; $payment_type[] = "CARD"; $payment_status[] = "RECEIVED"; 
 for($i=0; $i<count($number_of_products); $i++){
     $populateOrders = "INSERT INTO orders (orderID, number_of_products, products, total_cost, payment_type, payment_status) VALUES (
         '' ,'$number_of_products[$i]', '$products[$i]', '$total_cost[$i]', '$payment_type[$i]', '$payment_status[$i]');";

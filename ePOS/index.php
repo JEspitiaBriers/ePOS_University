@@ -4,10 +4,7 @@
 
     //DJ general notes 20/04
     //
-
-  
-
-
+    $_SESSION['orderID'] = $_GET['orderID'];
     $productsQuery = "SELECT * FROM products";
     $resultProductsQuery = mysqli_query($connection, $productsQuery);
     $nProducts = mysqli_num_rows($resultProductsQuery);
@@ -21,8 +18,12 @@
 
                 <body>
                 <div class="checkoutButton position-absolute top-50 start-0">
-                    <button class="btn btn-info btn-warning" type="button">Orders</button><br>
-                    <button class="btn btn-info btn-warning" type="button">End of day process</button>
+                    <form action="orders.php" method="GET">
+                        <button class="btn btn-warning btn-lg btn-block" type="submit">Select Order</button>
+                    </form>
+                    <form action="admin/view_data.php" method="GET">
+                        <button class="btn btn-warning btn-lg btn-block" type="submit">End Of Day</button>
+                    </form>
                 </div>
                 
 
@@ -34,7 +35,7 @@
                     </div>
                     <div class="workingArea">
                     <div id="time" class="container border border-dark">
-                        Time + Date
+                        Order: {$_SESSION['orderID']}
                     </div>
                     <div id="itemsContainer" class="container border-start border-end border-dark">
                         <div class="row">
@@ -53,8 +54,6 @@
 
             for ($i=0; $i<$nProducts; $i++) 
             {
-
-
                 while ($row = mysqli_fetch_assoc($resultProductsQuery)){
                     $productID = $row['productID'];
                     $productName = $row['product_name'];

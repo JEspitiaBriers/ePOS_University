@@ -1,7 +1,6 @@
 <?php
 
 require_once "head.php";
-$_SESSION['orderID'] = '5';
 $numOfProd = 0;
 $prodSelectArray = Array();
 $prodSelect = Array();
@@ -28,11 +27,10 @@ if($orderResults == 0) {
 }
 
 if($_SESSION['payment'] == 'CASH' && $_SESSION['cashGiven'] < $_SESSION['total']){
-    echo "Enter change given or ensure enough cash has been received.<br><br>";
-    header("Refresh:2; url=index.php");
+    echo "Enter cash given and ensure enough cash has been received.<br><br>";
+    header("Refresh:3; url=index.php");
 }
 else if($_SESSION['payment'] == 'CASH' && !$_SESSION['changeGiven']){
-    //Header("Location: http://localhost/ePOS_University/ePOS/cashAndChange.php");
     Header("Location: cashAndChange.php");
 }
 else {
@@ -57,7 +55,8 @@ else {
             "Payment Type" => $_SESSION['payment'],
             "Cash Given" => $_SESSION['cashGiven'],
             "Change Returned" => $_SESSION['change'],
-            "Payment Status" => "NO DATA TO BE FOUND"
+            "Payment Status" => "NO DATA TO BE FOUND",
+            "Order Placed" => date("d/m/y H:i:s")
         );
     }
     else {
@@ -67,7 +66,8 @@ else {
             "Products Selected" => $prodSelectArray,
             "Total Cost" => $_SESSION['total'],
             "Payment Type" => $_SESSION['payment'],
-            "Payment Status" => "NO DATA TO BE FOUND"
+            "Payment Status" => "NO DATA TO BE FOUND",
+            "Order Placed" => date("d/m/y H:i:s")
         );
     }
 
@@ -79,7 +79,7 @@ else {
     //creating random data to fill the fields of a new order
     //data is only random for testing purposes.
     //Data will be inputed during item selection
-    $updateProducts = "UPDATE orders SET products = '".$fileName."' WHERE orderID = {$_SESSION['orderID']}";
+    $updateProducts = "UPDATE orders SET number_of_products = {$numOfProd}, products = '".$fileName."', total_cost = {$_SESSION['total']} WHERE orderID = {$_SESSION['orderID']}";
     $updated = mysqli_query($connection, $updateProducts);
     if(!$updated){
         echo "Error Updating Order {$_SESSION['orderID']}";
