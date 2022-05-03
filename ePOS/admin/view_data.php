@@ -2,6 +2,8 @@
 require '../head.php';
 require '../database/credentials.php';
 
+
+$totalBalance= 2000.00;
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 echo <<<_END
         <div class = "fluid-container">
