@@ -5,7 +5,6 @@
     //DJ general notes 20/04
     //
 
-    
     if(!isset($_SESSION['orderID']) || empty($_SESSION['orderID'])){
         $_SESSION['orderID'] = 0;
     }
@@ -18,7 +17,7 @@
     $nProducts = mysqli_num_rows($resultProductsQuery);
     $ean13=0;
 
-    if (isset($_SESSION['loggedin'])) {
+    if (isset($_SESSION['loggedIn'])) {
         echo <<<HEREDOC
 
                 <div id="body" class="limiter">
@@ -142,7 +141,7 @@
     
 
     else{
-        header("Refresh:0; url=login.php");
+        header("Location: login.php");
         
     }
 

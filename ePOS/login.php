@@ -15,7 +15,7 @@
   include_once "validation.php";
 
   //this is just in case the user manually visits again login.php
-  if (isset($_SESSION['loggedin'])) {
+  if (isset($_SESSION['loggedIn'])) {
       $showForm = false;
       echo "You are logged in!";
       echo "<br>";
@@ -105,12 +105,10 @@
           }
           if ($fullMatch == true) {
             $showForm = false;
-            
-
+            $_SESSION['loggedIn'] = true; 
             $_SESSION['username'] = $_POST['username'];
 
             echo "Welcome {$_SESSION['username']}";
-            $_SESSION['loggedIn'] = true; 
             //redirect to main after 3 secs
             header("Refresh:2; url=orders.php");
 

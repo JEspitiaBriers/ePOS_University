@@ -1,6 +1,6 @@
 <?php
     require "head.php";
-
+    
     if (isset($_SESSION['loggedIn'])) {
         
         $getOrdersQuery = "SELECT orderID FROM orders";
@@ -9,7 +9,7 @@
         if($getOrdersResult == 0) {
             echo "Error getting orders.";
         }
-
+        
         echo <<<HEREDOC
                 <body>
                     <div id="body" class="limiter">
@@ -87,8 +87,7 @@
                 </body
         HEREDOC; 
     }else{
-        header("Refresh:0; url=login.php");
-        
+        header("Location: login.php");
     }
 
     require "footer.php";

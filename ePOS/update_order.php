@@ -86,6 +86,7 @@ else {
     }
     else {
         echo "Order {$_SESSION['orderID']} has successfully been updated!";
+        
     }
     echo <<<END
     <form action="createReceipt.php">   
