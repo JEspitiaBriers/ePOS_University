@@ -22,8 +22,8 @@ if($stockResults == 0) {
     echo "Error getting stock file for stock {$recentStockResult['Recent Stock']} (send to end).";
 }
 $stockFile = mysqli_fetch_assoc($stockExe);
-echo $stockFile;
-$stockContents = json_decode(file_get_contents("stockFiles/{$stockFile}"), true);
+print_r($stockFile);
+$stockContents = json_decode(file_get_contents("stockFiles/{$stockFile['stock']}"), true);
 print_r($stockContents);
 
 //subtract order contents from stock if the order is paid
@@ -42,5 +42,5 @@ else {
 
 echo "</div>";
 
-header("Location: endOfDay.php");
+//header("Location: endOfDay.php");
 ?>

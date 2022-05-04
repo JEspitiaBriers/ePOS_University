@@ -90,7 +90,7 @@ else {
     }
     if($_SESSION['payment'] == 'SAVE'){
         echo <<<END
-            <form action="orders.php">   
+            <form action="sendToEnd.php">   
                 <input type="submit" value="Return to Orders">
             </form>
         </div>

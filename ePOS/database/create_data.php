@@ -74,19 +74,6 @@ else
     die("Error checking for existing table: end -> " . mysqli_error($connection));
 }
 
-//---STOCK TABLE
-$dropStock = "DROP TABLE IF EXISTS stock";
-
-// no data returned, check for drop success/failure:
-    if (mysqli_query($connection, $dropStock))
-{
-    echo "Dropped existing table: stock<br>";
-}
-else
-{
-    die("Error checking for existing table: stock -> " . mysqli_error($connection));
-}
-
 //---PRODUCTS TABLE
 //drop table if it already exists
 $dropProducts = "DROP TABLE IF EXISTS products";
@@ -297,43 +284,9 @@ for($i = 0; $i <count($dayStart); $i++) {
     }
 }
 
-//stock data
-//select product ID, insert those into col along with the other data
-//stock id, prodid, prod stock, num sold, datechecked
-//table needs to update with this data from the json every day, alongwith a timestamp for that day so you can see its different.
-//so wed need a function too for this, ticking every sec for 24 hours until it reaches it, grabs the data for that current day and updates the db tables(inserts the new rows)
-
 $date = date("Y/m/d H:i:s");
 //$date_checked[] = $date;
 
-
-
-
-
-$id = "";
-$findProducts = "SELECT * FROM products";
-
-$findProductsExe = mysqli_query($connection,$findProducts);
-while($row = mysqli_fetch_assoc($findProductsExe)){
-    
-    $stock_sold = rand(1,15); 
-    $stock_data = rand(1,100);
-    
-    $id = $row["productID"];
-
-    $populateStock = "INSERT INTO stock(productID, product_stock, number_sold, dateChecked)
-     VALUES('{$id}','$stock_data','$stock_sold','{$date}');";
-
-    if (mysqli_query($connection, $populateStock))
-    {
-        echo "row inserted (stock)<br>";
-    }
-    else
-    {
-        die("Error inserting row: stock -> " . mysqli_error($connection));
-    }
-    
-}
 
 //testing data for orders table
 $number_of_products[] = "1"; $products[] = "order1.json"; $total_cost[] = "1"; $payment_type[] = "CARD"; $payment_status[] = "AWAITING"; 
