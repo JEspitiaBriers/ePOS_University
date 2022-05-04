@@ -37,7 +37,7 @@
                                     <td>New Order</td>
                                     <td>
                                         <form action="index.php" method="GET">
-                                        <input type="text" name="orderID" value="New Order" hidden readonly></input>
+                                        <input type="text" name="orderID" value="0" hidden readonly></input>
                                         <button style="background-color: #808080" type="submit">Create New Order</button>
                                         </form>
                                     </td>

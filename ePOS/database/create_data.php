@@ -46,6 +46,35 @@ else
 {
     die("Error checking for existing table: staff -> " . mysqli_error($connection));
 }
+
+//---START OF DAY TABLE
+$dropStart = "DROP TABLE IF EXISTS startOfDay";
+
+// no data returned, check for drop success/failure:
+if (mysqli_query($connection, $dropStart))
+{
+    echo "Dropped existing table: start<br>";
+}
+else
+{
+    die("Error checking for existing table: start -> " . mysqli_error($connection));
+}
+
+
+//---END OF DAY TABLE
+$dropEnd = "DROP TABLE IF EXISTS endOfDay";
+
+// no data returned, check for drop success/failure:
+if (mysqli_query($connection, $dropEnd))
+{
+    echo "Dropped existing table: end<br>";
+}
+else
+{
+    die("Error checking for existing table: end -> " . mysqli_error($connection));
+}
+
+//---STOCK TABLE
 $dropStock = "DROP TABLE IF EXISTS stock";
 
 // no data returned, check for drop success/failure:
@@ -112,6 +141,34 @@ if (mysqli_query($connection, $createStaff))
 else
 {
     die("Error creating table: staff -> " . mysqli_error($connection));
+}
+
+//create Start of Day table:
+$createStart = "CREATE TABLE startOfDay (dayStart DATE, stock VARCHAR(10), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(20));";
+///////////// --- NOTE: username can be user initials plus idnumber plus random int
+
+// no data returned, check for drop success/failure:
+if (mysqli_query($connection, $createStart))
+{
+    echo "Table created successfully: start<br>";
+}
+else
+{
+    die("Error creating table: start -> " . mysqli_error($connection));
+}
+
+//create End of Day table:
+$createEnd = "CREATE TABLE endOfDay (dayEnd DATE, stock VARCHAR(10), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(10), total_income FLOAT(20));";
+///////////// --- NOTE: username can be user initials plus idnumber plus random int
+
+// no data returned, check for drop success/failure:
+if (mysqli_query($connection, $createEnd))
+{
+    echo "Table created successfully: end <br>";
+}
+else
+{
+    die("Error creating table: end -> " . mysqli_error($connection));
 }
 
 //create products table:
@@ -204,7 +261,8 @@ function GenerateUsername ($firstname, $lastname) {
         $userInitials .= substr($usernameCreate[$i], 0, 1);
     }
     //generates number to add to use initals
-    $idNum = rand(1000, 9999);
+    //$idNum = rand(1000, 9999);
+    $idNum = "1234";
     $userID = $userInitials . $idNum;
     //checks if the new user id already exists in the databse
     return $userID;
@@ -231,6 +289,26 @@ for ($i = 0; $i<count($product_name); $i++){
         die("Error inserting row: product -> " . mysqli_error($connection));
     }
 }
+
+//testing data Start of Day table:
+$dayStart[] = '2022-05-01'; $stock[] = 'stock22-05-01.json'; $totalOrders[] = '1'; $numOpenOrders[] = '1'; $balance[] = '1500';
+$dayStart[] = '2022-05-02'; $stock[] = 'stock22-05-02.json'; $totalOrders[] = '2'; $numOpenOrders[] = '1'; $balance[] = '1743.35';
+$dayStart[] = '2022-05-03'; $stock[] = 'stock22-05-03.json'; $totalOrders[] = '3'; $numOpenOrders[] = '0'; $balance[] = '';
+$dayStart[] = '2022-05-04'; $stock[] = 'stock22-05-04.json'; $totalOrders[] = '4'; $numOpenOrders[] = '1'; $balance[] = '';
+for($i = 0; $i <count($dayStart); $i++) {
+    $populateStart = "INSERT INTO startOfDay (dayStart, stock, total_orders, num_open_orders, balance) 
+            VALUES ('$dayStart[$i]', '$stock[$i]', '$totalOrders[$i]', '$numOpenOrders[$i]', '$balance[$i]');";            
+    // no data returned, check for drop success/failure:
+    if (mysqli_query($connection, $populateStart))
+    {
+        echo "row inserted (start)<br>";
+    }
+    else
+    {
+        die("Error inserting row: start -> " . mysqli_error($connection));
+    }
+}
+
 //stock data
 //select product ID, insert those into col along with the other data
 //stock id, prodid, prod stock, num sold, datechecked

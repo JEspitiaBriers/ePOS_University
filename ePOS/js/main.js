@@ -155,6 +155,25 @@ function ready() {
         button.addEventListener('click', addToCartClicked)
     }
 
+
+    //jamie is trying stuff, i need help -----------------------------------------------------
+    /*
+        if the selected order is not "new order"{
+            const jsonOrder = ;
+            addItemToCart(title, price, pid)
+        }
+    */
+    // var orderID = "<%= $_SESSION['orderID'] %>";
+    // if(orderID != 'New Order'){
+    //     var file = "";
+    //     file.open("GET", "ordersFile/order${orderID}.json", false);
+    //     file.send(null);
+    //     var fileContents = JSON.parse(file.responseText);
+    //     window.alert(fileContents.result[0]);
+    // }
+    //jamie is done trying stuff, i still need help -----------------------------------------------------
+
+
     //document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 }
 /*

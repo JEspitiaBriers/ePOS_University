@@ -2,25 +2,18 @@
     require "head.php";
 
 
-<<<<<<< HEAD
     //DJ general notes 20/04
     //
     $_SESSION['orderID'] = $_GET['orderID'];
-=======
-
-
-
->>>>>>> 06f4dfdba403c6379d1e2d09a4215234e29470c4
     $productsQuery = "SELECT * FROM products";
     $resultProductsQuery = mysqli_query($connection, $productsQuery);
     $nProducts = mysqli_num_rows($resultProductsQuery);
     $ean13=0;
-
+    
     if (isset($_SESSION['loggedin'])) {
 
         echo <<<HEREDOC
                 <a href="logout.php">Logout</a>
-            
 
                 <div class="checkoutButton position-absolute top-50 start-0">
                     <form action="orders.php" method="GET">
@@ -39,18 +32,9 @@
                         <img src="images/logoweb.png" id="logoweb">
                     </div>
                     <div class="workingArea">
-<<<<<<< HEAD
                     <div id="time" class="container border border-dark">
                         Order: {$_SESSION['orderID']}
                     </div>
-=======
-                        <div class="container border border-dark">
-                            <h6 id = "hClock"></h6>
-                            
-                        </div>
-
-
->>>>>>> 06f4dfdba403c6379d1e2d09a4215234e29470c4
                     <div id="itemsContainer" class="container border-start border-end border-dark">
                         <div class="row">
                             <div id="itemsSelection" class="col-9 border-dark">

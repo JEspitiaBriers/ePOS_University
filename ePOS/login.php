@@ -20,7 +20,7 @@
       echo "You are logged in!";
       echo "<br>";
       echo "Redirecting to ePOS";
-      header("Refresh:2; url=index.php");
+      header("Refresh:2; url=orders.php");
 
   } else {
       $showForm = true;

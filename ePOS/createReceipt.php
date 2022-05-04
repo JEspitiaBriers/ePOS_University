@@ -58,6 +58,10 @@ echo <<<END
         Served By: {$serverName} Date: {$dateOfPurchase} Time: {$timeOfPurchase}
         </p>
     </div>
+
+    <form action="sendToEnd.php">
+        <input type="submit" value="Select Order Menu">
+    </form>
 END;
 
 

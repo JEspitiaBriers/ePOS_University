@@ -47,6 +47,12 @@ echo <<<_END
 
 _END;
 
+$orderAtStartQuery = "SELECT COUNT(orderID) FROM orders";
+$orderAtStartExe = mysqli_query($connection, $orderAtStartQuery);
+$orderAtStartResult = mysqli_fetch_assoc($orderAtStartExe);
+
+print_r($orderAtStartResult);
+
 $ptDQuery ="SELECT COUNT(payment_type) AS card FROM orders WHERE payment_type = 'CARD'; ";
 $ptHQuery .="SELECT COUNT(payment_type) AS cash FROM orders WHERE payment_type = 'CASH'; ";
 
