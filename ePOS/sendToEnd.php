@@ -8,6 +8,9 @@ $orderResults = mysqli_num_rows($checkOrder);
 if($orderResults == 0) {
     echo "Error getting order file for order {$_SESSION['orderID']} (send to end).";
 }
+$orderFile = mysqli_fetch_assoc($checkOrder);
+print_r($orderFile);
+$orderContents = json_decode(file_get_contents("ordersFolder/{$orderFile['products']}"), true);
 
 $recentStockQuery = "SELECT MAX(dayStart) as 'Recent Stock' FROM startOfDay";
 $recentStockExe = mysqli_query($connection, $recentStockQuery);
@@ -28,14 +31,16 @@ print_r($stockContents);
 
 //subtract order contents from stock if the order is paid
 
-if($orderFile['Payment Status'] == "AWAITING"){
+if($orderContents['Payment Status'] == "AWAITING"){
     
 }
 else {
     for($i=0; $i<count($orderContents['Products Selected']['Qty']); $i++){
-        if($orderContents['Products Selected']['Item'][$i] == $stockContents['Product'][$i]){
-            $diffInCount[$i] = $stockContents['Stock'][$i] - $orderContents['Products Selected']['Qty'][$i];
-            $stockContents['Stock'][$i] -= $diffInCount[$i];
+        for($j=0; $j<count($orderContents['Products Selected']['Qty']; $j++)){
+            if($orderContents['Products Selected']['Item'][$i] == $stockContents['Product'][$j]){
+                $diffInCount[$j] = $stockContents['Stock'][$j] - $orderContents['Products Selected']['Qty'][$i];
+                $stockContents['Stock'][$i] -= $diffInCount[$i];
+            }
         }
     }
 }
@@ -44,3 +49,7 @@ echo "</div>";
 
 //header("Location: endOfDay.php");
 ?>
+
+a b c d => d a c b
+
+a 
