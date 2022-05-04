@@ -6,17 +6,29 @@ require_once 'database/credentials.php';
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 //class was container-fluid, maybe a bootstrap thing idk
 echo <<<_END
-        <div class = "fluid-container">
-            <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
+
+        <body>
+        <div id="body" class="limiter">
+            <div class="mainContainer">
+                <div class="wrap-mainContainer">
+                <div id="picContainer" class="container">
+                    <img src="images/logoweb.png" id="logoweb">
+                </div>
+                <div class="workingArea">
+                <div class="container border border-dark">
+                    <h6 id = "hClock"></h6>
+                </div>
+                <div class = "fluid-container">
+                    <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 _END;
 
 
@@ -35,7 +47,7 @@ while($rows = mysqli_fetch_assoc($results)){
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['username'].'">Edit</button>
 
     <div class="modal fade"id="editModal'.$rows['username'].'" tabindex="-1" aria-labelledby="editModalLabel'.$rows['username'].'" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog text-justify">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Edit User Information</h5>
@@ -106,7 +118,8 @@ while($rows = mysqli_fetch_assoc($results)){
 echo <<<_END
     </tbody>
     </thead>
-    <div>
+    </table>
+    </div>
 _END;
 
 require 'footer.php';

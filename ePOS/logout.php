@@ -3,7 +3,7 @@
 session_start();
 
 //just in case a user navigates to this page without being logged in
-if (isset($_SESSION['loggedin'])) { 
+if (isset($_SESSION['loggedIn'])) { 
 
 $_session = array();
 setcookie(session_name(), '', time() - 2592000, '/');
