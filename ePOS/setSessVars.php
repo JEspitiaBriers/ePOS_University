@@ -1,7 +1,7 @@
 <?php
 require_once "head.php";
 $_SESSION['changeGiven'] = false;
-echo $_SESSION['changeGiven'];
+echo "<div style='position:absolute; left:205px;'> {$_SESSION['changeGiven']}";
 $_SESSION['quantity'] = $_GET['quantity'];
 print_r($_SESSION['quantity']);
 $_SESSION['cashGiven'] = $_GET['cashGiven'];
@@ -14,6 +14,13 @@ $_SESSION['payment'] = $_GET['payment'];
 print_r($_SESSION['payment']);
 $_SESSION['total'] = $_GET['total'];
 print_r($_SESSION['total']);
+if($_SESSION['payment'] == "SAVE"){   
+    $_SESSION['payment_status'] = "AWAITING";
+}
+else {
+    $_SESSION['payment_status'] = "RECIEVED";
+}
+echo "</div>";
 
 header("Location: update_order.php");
 

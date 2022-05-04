@@ -1,1 +1,1 @@
-{"Order Number":"2","Number of Products":6,"Products Selected":{"Qty":["3","1","2"],"Item":["WATER","COKE","FANTA"],"Price":["1.25","1","1"]},"Total Cost":"6.75","Payment Type":"CARD","Payment Status":"NO DATA TO BE FOUND","Order Placed":"03\/05\/22 12:58:40"}
+{"Order Number":"2","Number of Products":2,"Products Selected":{"Qty":["1","1"],"Item":["COKE","FANTA"],"Price":["1","1"]},"Total Cost":"2","Payment Type":"CASH","Cash Given":"2","Change Returned":0,"Payment Status":"RECIEVED","Order Placed":"04\/05\/22 17:03:35"}

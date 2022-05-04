@@ -55,7 +55,7 @@ else {
             "Payment Type" => $_SESSION['payment'],
             "Cash Given" => $_SESSION['cashGiven'],
             "Change Returned" => $_SESSION['change'],
-            "Payment Status" => "NO DATA TO BE FOUND",
+            "Payment Status" => $_SESSION['payment_status'],
             "Order Placed" => date("d/m/y H:i:s")
         );
     }
@@ -66,7 +66,7 @@ else {
             "Products Selected" => $prodSelectArray,
             "Total Cost" => $_SESSION['total'],
             "Payment Type" => $_SESSION['payment'],
-            "Payment Status" => "NO DATA TO BE FOUND",
+            "Payment Status" => $_SESSION['payment_status'],
             "Order Placed" => date("d/m/y H:i:s")
         );
     }
@@ -82,16 +82,28 @@ else {
     $updateProducts = "UPDATE orders SET number_of_products = {$numOfProd}, products = '".$fileName."', total_cost = {$_SESSION['total']} WHERE orderID = {$_SESSION['orderID']}";
     $updated = mysqli_query($connection, $updateProducts);
     if(!$updated){
-        echo "Error Updating Order {$_SESSION['orderID']}";
+        echo "<div style='position:absolute; left:205px;'> Error Updating Order {$_SESSION['orderID']} </div>";
     }
     else {
-        echo "Order {$_SESSION['orderID']} has successfully been updated!";
+        echo "<div style='position:absolute; left:205px;'>Order {$_SESSION['orderID']} has successfully been updated!";
         
     }
-    echo <<<END
-    <form action="createReceipt.php">   
-        <input type="submit" value="Print Receipt">
-    </form>
+    if($_SESSION['payment'] == 'SAVE'){
+        echo <<<END
+            <form action="orders.php">   
+                <input type="submit" value="Return to Orders">
+            </form>
+        </div>
+        END;
+    }
+    else {
+        echo <<<END
+        <form action="createReceipt.php">   
+            <input type="submit" value="Print Receipt">
+        </form>
+    </div>
     END;
+    }
+    
 }
 ?>
