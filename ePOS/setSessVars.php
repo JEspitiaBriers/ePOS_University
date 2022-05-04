@@ -16,4 +16,11 @@ $_SESSION['total'] = $_GET['total'];
 print_r($_SESSION['total']);
 
 header("Location: update_order.php");
+
+$daiyAmountGained = 0;
+$totalTransactions = 0;
+$totalProductsSold = 0;
+//need a proper way to store how much each one paid? probs store each product and quantity,
+//read if the product alredy exists, if so add to the total of the amount that product has been bought
+//maybe have this in update orders.php?
 ?>

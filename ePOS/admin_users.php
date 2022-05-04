@@ -1,6 +1,6 @@
 <?php
-require '../head.php';
-require_once '../database/credentials.php';
+require 'head.php';
+require_once 'database/credentials.php';
 
 
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -22,8 +22,6 @@ _END;
 
 $query = "SELECT * FROM staff";
 
-//edit_users.php does not exist as of 11/04.
-//nor delete_users.php.
 
 
 //not showing passwords of staff members
@@ -44,7 +42,7 @@ while($rows = mysqli_fetch_assoc($results)){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method = "POST" action ="edit_users.php">
+                                <form method = "POST" action ="admin/edit_users.php">
                                     <label for="username" id ="username">Username</label></br>
                                     <input name="username" type="text" value ="'.$rows['username'].'"><br/>
 
@@ -62,7 +60,7 @@ while($rows = mysqli_fetch_assoc($results)){
                                     <input name="password" type="text" value ="'.$rows['password'].'"><br/>
 
                         </div>
-                        <form class="modal-footer" method="POST" action="edit_users.php">
+                        <form class="modal-footer" method="POST" action="admin/edit_users.php">
                             <button type="submit" class="btn btn-success" name="staff" value="'.$rows['username'].'">Submit Changes</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
@@ -90,10 +88,9 @@ while($rows = mysqli_fetch_assoc($results)){
                          <div class="modal-body">
                             <p>Are you sure you want to delete this user? This action cannot be undone.</p>
                         </div>
-                        <form class="modal-footer" method="POST" action="delete_users.php">
-
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name="staff" value="'.$rows['username'].'">Yes</button>
+                        <form class="modal-footer" method="POST" action="admin/delete_users.php">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger" name="staff" value="'.$rows['username'].'">Yes</button>
                         </form>
                     </div>
                 </div>
@@ -112,6 +109,6 @@ echo <<<_END
     <div>
 _END;
 
-//require '../footer.php';
+require 'footer.php';
 
 ?>

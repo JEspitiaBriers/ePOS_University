@@ -1,7 +1,7 @@
 <?php
-    include "head.php";
+    require "head.php";
 
-    if (isset($_SESSION['loggedin'])) {
+    if (isset($_SESSION['loggedIn'])) {
         
         $getOrdersQuery = "SELECT orderID FROM orders";
         $getOrdersExe = mysqli_query($connection, $getOrdersQuery);
@@ -19,8 +19,8 @@
                                 <img src="images/logoweb.png" id="logoweb">
                             </div>
                             <div class="workingArea">
-                            <div id="time" class="container border border-dark">
-                                Time + Date
+                            <div class="container border border-dark">
+                                <h6 id = "hClock"></h6>
                             </div>
                             <table>
                                 <tr>
@@ -86,10 +86,7 @@
                     </div>
                 </body
         HEREDOC; 
-    }
-    
-
-    else{
+    }else{
         header("Refresh:0; url=login.php");
         
     }

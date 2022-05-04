@@ -1,6 +1,6 @@
 <?php
-require '../head.php';
-require '../database/credentials.php';
+require 'head.php';
+require 'database/credentials.php';
 
 
 $totalBalance= 2000.00;
@@ -89,5 +89,5 @@ _END;
  total stock after all the purchases), general p/l(total revenue gained in a day), then order details (total ca
 
 */
-require '../footer.php';
+require 'footer.php';
 ?>
