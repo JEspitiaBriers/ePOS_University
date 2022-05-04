@@ -6,7 +6,7 @@
     //
     
 
-    if(!isset($_GET['orderID']) || empty($_GET['orderID'])){
+    if(!isset($_SESSION['orderID']) || empty($_SESSION['orderID'])){
         $_SESSION['orderID'] = 0;
         $_SESSION['isNew'] = true;
     }

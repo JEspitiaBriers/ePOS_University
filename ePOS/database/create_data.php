@@ -74,6 +74,19 @@ else
     die("Error checking for existing table: end -> " . mysqli_error($connection));
 }
 
+//---STOCK TABLE
+$dropStock = "DROP TABLE IF EXISTS stock";
+
+// no data returned, check for drop success/failure:
+    if (mysqli_query($connection, $dropStock))
+{
+    echo "Dropped existing table: stock<br>";
+}
+else
+{
+    die("Error checking for existing table: stock -> " . mysqli_error($connection));
+}
+
 //---PRODUCTS TABLE
 //drop table if it already exists
 $dropProducts = "DROP TABLE IF EXISTS products";
@@ -104,6 +117,14 @@ else
 
 
 
+
+
+
+
+
+
+
+
 //----------END: table droppping (used to reset tables during development)
 
 
@@ -123,7 +144,7 @@ else
 }
 
 //create Start of Day table:
-$createStart = "CREATE TABLE startOfDay (dayStart DATE, stock VARCHAR(20), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(20));";
+$createStart = "CREATE TABLE startOfDay (dayStart DATE, stock VARCHAR(10), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(20));";
 ///////////// --- NOTE: username can be user initials plus idnumber plus random int
 
 // no data returned, check for drop success/failure:
@@ -137,7 +158,7 @@ else
 }
 
 //create End of Day table:
-$createEnd = "CREATE TABLE endOfDay (dayEnd DATE, stock VARCHAR(20), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(10), total_income FLOAT(20));";
+$createEnd = "CREATE TABLE endOfDay (dayEnd DATE, stock VARCHAR(10), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(10), total_income FLOAT(20));";
 ///////////// --- NOTE: username can be user initials plus idnumber plus random int
 
 // no data returned, check for drop success/failure:
@@ -176,6 +197,18 @@ if (mysqli_query($connection, $createOrders))
 else
 {
     die("Error creating table: orders -> " . mysqli_error($connection));
+}
+
+
+
+$createStock = "CREATE TABLE stock(stockID INT(10) AUTO_INCREMENT, productID INT(10) NOT NULL, product_stock INT(100) NOT NULL,number_sold INT(100) NOT NULL, dateChecked DATE NOT NULL, PRIMARY KEY(stockID),CONSTRAINT FK_productID FOREIGN KEY (productID) REFERENCES products(productID) );" ;
+if (mysqli_query($connection, $createStock))
+{
+    echo "Table created successfully: stock<br>";
+}
+else
+{
+    die("Error creating table: stock -> " . mysqli_error($connection));
 }
 
 //----------END: table creation
@@ -258,10 +291,10 @@ for ($i = 0; $i<count($product_name); $i++){
 }
 
 //testing data Start of Day table:
-$dayStart[] = '2022-05-01'; $stock[] = 'stock2022-05-01.json'; $totalOrders[] = '1'; $numOpenOrders[] = '1'; $balance[] = '1500';
-$dayStart[] = '2022-05-02'; $stock[] = 'stock2022-05-02.json'; $totalOrders[] = '2'; $numOpenOrders[] = '1'; $balance[] = '1743.35';
-$dayStart[] = '2022-05-03'; $stock[] = 'stock2022-05-03.json'; $totalOrders[] = '3'; $numOpenOrders[] = '0'; $balance[] = '';
-$dayStart[] = '2022-05-04'; $stock[] = 'stock2022-05-04.json'; $totalOrders[] = '4'; $numOpenOrders[] = '1'; $balance[] = '';
+$dayStart[] = '2022-05-01'; $stock[] = 'stock22-05-01.json'; $totalOrders[] = '1'; $numOpenOrders[] = '1'; $balance[] = '1500';
+$dayStart[] = '2022-05-02'; $stock[] = 'stock22-05-02.json'; $totalOrders[] = '2'; $numOpenOrders[] = '1'; $balance[] = '1743.35';
+$dayStart[] = '2022-05-03'; $stock[] = 'stock22-05-03.json'; $totalOrders[] = '3'; $numOpenOrders[] = '0'; $balance[] = '';
+$dayStart[] = '2022-05-04'; $stock[] = 'stock22-05-04.json'; $totalOrders[] = '4'; $numOpenOrders[] = '1'; $balance[] = '';
 for($i = 0; $i <count($dayStart); $i++) {
     $populateStart = "INSERT INTO startOfDay (dayStart, stock, total_orders, num_open_orders, balance) 
             VALUES ('$dayStart[$i]', '$stock[$i]', '$totalOrders[$i]', '$numOpenOrders[$i]', '$balance[$i]');";            
@@ -284,6 +317,35 @@ for($i = 0; $i <count($dayStart); $i++) {
 
 $date = date("Y/m/d H:i:s");
 //$date_checked[] = $date;
+
+
+
+
+
+$id = "";
+$findProducts = "SELECT * FROM products";
+
+$findProductsExe = mysqli_query($connection,$findProducts);
+while($row = mysqli_fetch_assoc($findProductsExe)){
+    
+    $stock_sold = rand(1,15); 
+    $stock_data = rand(1,100);
+    
+    $id = $row["productID"];
+
+    $populateStock = "INSERT INTO stock(productID, product_stock, number_sold, dateChecked)
+     VALUES('{$id}','$stock_data','$stock_sold','{$date}');";
+
+    if (mysqli_query($connection, $populateStock))
+    {
+        echo "row inserted (stock)<br>";
+    }
+    else
+    {
+        die("Error inserting row: stock -> " . mysqli_error($connection));
+    }
+    
+}
 
 //testing data for orders table
 $number_of_products[] = "1"; $products[] = "order1.json"; $total_cost[] = "1"; $payment_type[] = "CARD"; $payment_status[] = "AWAITING"; 
