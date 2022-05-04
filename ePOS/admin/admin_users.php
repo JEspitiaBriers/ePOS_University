@@ -22,8 +22,6 @@ _END;
 
 $query = "SELECT * FROM staff";
 
-//edit_users.php does not exist as of 11/04.
-//nor delete_users.php.
 
 
 //not showing passwords of staff members

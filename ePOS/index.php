@@ -5,6 +5,9 @@
     //DJ general notes 20/04
     //
     $_SESSION['orderID'] = $_GET['orderID'];
+
+
+
     $productsQuery = "SELECT * FROM products";
     $resultProductsQuery = mysqli_query($connection, $productsQuery);
     $nProducts = mysqli_num_rows($resultProductsQuery);
@@ -28,6 +31,11 @@
                     <div id="time" class="container border border-dark">
                         Order: {$_SESSION['orderID']}
                     </div>
+                    <div class="container border border-dark">
+                    <h6 id = "hClock"></h6>
+                    
+                    </div>
+
                     <div id="itemsContainer" class="container border-start border-end border-dark">
                         <div class="row">
                             <div id="itemsSelection" class="col-9 border-dark">
