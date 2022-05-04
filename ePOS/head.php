@@ -46,7 +46,7 @@ if(isset($_SESSION['loggedIn'])){
             <a href="index.php">Till System</a>
             <a href="logout.php">Logout</a>
             <a href="orders.php">Order Page</a>
-            <a href="admin_users">Manage Users</a>
+            <a href="admin_users.php">Manage Users</a>
             <a href="admin_products.php">Manage Products</a>
             <a href="view_data.php">End of Day Process</a>
         </div>
