@@ -291,10 +291,10 @@ for ($i = 0; $i<count($product_name); $i++){
 }
 
 //testing data Start of Day table:
-$dayStart[] = '2022-05-01'; $stock[] = 'stock22-05-01.json'; $totalOrders[] = '1'; $numOpenOrders[] = '1'; $balance[] = '1500';
-$dayStart[] = '2022-05-02'; $stock[] = 'stock22-05-02.json'; $totalOrders[] = '2'; $numOpenOrders[] = '1'; $balance[] = '1743.35';
-$dayStart[] = '2022-05-03'; $stock[] = 'stock22-05-03.json'; $totalOrders[] = '3'; $numOpenOrders[] = '0'; $balance[] = '';
-$dayStart[] = '2022-05-04'; $stock[] = 'stock22-05-04.json'; $totalOrders[] = '4'; $numOpenOrders[] = '1'; $balance[] = '';
+$dayStart[] = '2022-05-01'; $stock[] = 'stock2022-05-01.json'; $totalOrders[] = '1'; $numOpenOrders[] = '1'; $balance[] = '1500';
+$dayStart[] = '2022-05-02'; $stock[] = 'stock2022-05-02.json'; $totalOrders[] = '2'; $numOpenOrders[] = '1'; $balance[] = '1743.35';
+$dayStart[] = '2022-05-03'; $stock[] = 'stock2022-05-03.json'; $totalOrders[] = '3'; $numOpenOrders[] = '0'; $balance[] = '';
+$dayStart[] = '2022-05-04'; $stock[] = 'stock2022-05-04.json'; $totalOrders[] = '4'; $numOpenOrders[] = '1'; $balance[] = '';
 for($i = 0; $i <count($dayStart); $i++) {
     $populateStart = "INSERT INTO startOfDay (dayStart, stock, total_orders, num_open_orders, balance) 
             VALUES ('$dayStart[$i]', '$stock[$i]', '$totalOrders[$i]', '$numOpenOrders[$i]', '$balance[$i]');";            
