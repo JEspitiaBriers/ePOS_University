@@ -137,7 +137,7 @@
                             </div>
                             <footer class="row">
                                 <p id="footerText">
-                                    ePOS v0.1
+                                    ePOS v1.2
                                 </p>
                             
                             </footer>
