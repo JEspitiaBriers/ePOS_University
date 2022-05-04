@@ -13,10 +13,9 @@
     $nProducts = mysqli_num_rows($resultProductsQuery);
     $ean13=0;
     
-    if (isset($_SESSION['loggedin'])) {
+    if (isset($_SESSION['loggedIn'])) {
 
         echo <<<HEREDOC
-                <a href="logout.php">Logout</a>
 
 
                 

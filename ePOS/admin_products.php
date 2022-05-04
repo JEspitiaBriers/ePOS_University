@@ -1,6 +1,6 @@
 <?php
-require '../head.php';
-require_once '../database/credentials.php';
+require 'head.php';
+require_once 'database/credentials.php';
 
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 //class was container-fluid, maybe a bootstrap thing idk
@@ -9,7 +9,7 @@ echo <<<_END
             <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
             <thead>
                 <tr>
-                    <th>Product Image</th>
+
                     <th>Product ID</th>
                     <th>Product Name</th>
                     <th>Description</th>
@@ -22,10 +22,17 @@ _END;
 
 $query = "SELECT * FROM products";
 
+
+/*
+<th>Product Image</th>
+<td><img src =../".$rows['product_image']." alt = ''</img></td>
+
+ <img class = "img_responsive" src ="'.$rows['product_image'].'" alt = "">
+*/
 $results = mysqli_query($connection, $query);
 while($rows = mysqli_fetch_assoc($results)){
     echo "<tr>";
-    echo "<td><img src =../".$rows['product_image']." alt = ''</img></td><td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td>"; 
+    echo "<td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td>"; 
     
     echo '<td>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['productID'].'">Edit</button>
@@ -38,9 +45,8 @@ while($rows = mysqli_fetch_assoc($results)){
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method = "POST" action ="edit_products.php">
+                                <form method = "POST" action ="admin/edit_products.php">
 
-                                    <img class = "img_responsive" src =../'.$rows['product_image'].' alt = "">
 
                                     <label for="productID" id ="productID">Product ID</label></br>
                                     <input name="productID" type="text" value ="'.$rows['productID'].'"><br/>
@@ -55,7 +61,7 @@ while($rows = mysqli_fetch_assoc($results)){
                                     <input name="price" type="text" value ="'.$rows['price'].'"><br/>
 
                         </div>
-                        <form class="modal-footer" method="POST" action="edit_products.php">
+                        <form class="modal-footer" method="POST" action="admin/edit_products.php">
                             <button type="submit" class="btn btn-success" name="prod" value="'.$rows['productID'].'">Submit Changes</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </form>
@@ -83,10 +89,10 @@ while($rows = mysqli_fetch_assoc($results)){
                          <div class="modal-body">
                             <p>Are you sure you want to delete this product? All data will be lost, including number of this item sold. This action cannot be undone.</p>
                         </div>
-                        <form class="modal-footer" method="POST" action="delete_products.php">
+                        <form class="modal-footer" method="POST" action="admin/delete_products.php">
 
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name="prod" value="'.$rows['productID'].'">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger" name="prod" value="'.$rows['productID'].'">Yes</button>
                         </form>
                     </div>
                 </div>
@@ -105,6 +111,6 @@ echo <<<_END
     <div>
 _END;
 
-require '../footer.php';
+require 'footer.php';
 
 ?>

@@ -27,19 +27,18 @@ if (isset($_POST['prod'])){
     $productImg = $_POST['product_image'];
     $productPrice = $_POST['price'];
     $productDesc = $_POST['product_description'];
-    $noSoldProduct = $_POST['number_sold'];
 
 
 
 
 
-    $query = "UPDATE products SET product_name = '$productName', price = '$productPrice',product_description = '$productDesc', product_image = '$productImg', number_sold = '$noSoldProduct' WHERE productID = '$productID'";
+    $query = "UPDATE products SET product_name = '$productName', price = '$productPrice',product_description = '$productDesc', product_image = '$productImg' WHERE productID = '$productID'";
 
     $result = mysqli_query($connection,$query);
 
     if ($result)
     {
-        header('Location: admin_products.php');
+        header('Location: ../admin_products.php');
     }
     else
     {    
@@ -53,11 +52,5 @@ if (isset($_POST['prod'])){
     header('Location: admin_products.php');
 }
 
-/*
-
-if($_SESSION['username'] == "admin"){
-    
-}
-*/
 
 ?>

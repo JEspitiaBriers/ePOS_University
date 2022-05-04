@@ -105,11 +105,12 @@
           }
           if ($fullMatch == true) {
             $showForm = false;
-            $_SESSION['loggedin'] = true; 
+            
 
             $_SESSION['username'] = $_POST['username'];
 
             echo "Welcome {$_SESSION['username']}";
+            $_SESSION['loggedIn'] = true; 
             //redirect to main after 3 secs
             header("Refresh:2; url=orders.php");
 

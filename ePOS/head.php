@@ -35,22 +35,30 @@ echo <<<_END
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body onload = "display_ct()">
+    _END;
 
+
+
+if(isset($_SESSION['loggedIn'])){
+    echo  <<<_END
         <div class="sidenav">
             <img src ="images/logoweb.png" id = "logoweb" alt = "Logo picture" >
-            <a href="ePOS/index.php">Till System</a>
+            <a href="index.php">Till System</a>
             <a href="logout.php">Logout</a>
             <a href="orders.php">Order Page</a>
-            <a href="admin\admin_users.php">Manage Users</a>
+            <a href="admin_users">Manage Users</a>
             <a href="admin_products.php">Manage Products</a>
-            <a href="admin/view_data.php">End of Day Process</a>
+            <a href="view_data.php">End of Day Process</a>
         </div>
+    _END;
+}
+
+
 
 
     
 
 
 
-_END;
 
 ?>

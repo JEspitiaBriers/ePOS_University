@@ -1,7 +1,7 @@
 <?php
     require "head.php";
 
-    if (isset($_SESSION['loggedin'])) {
+    if (isset($_SESSION['loggedIn'])) {
         
         $getOrdersQuery = "SELECT orderID FROM orders";
         $getOrdersExe = mysqli_query($connection, $getOrdersQuery);
@@ -86,10 +86,7 @@
                     </div>
                 </body
         HEREDOC; 
-    }
-    
-
-    else{
+    }else{
         header("Refresh:0; url=login.php");
         
     }
