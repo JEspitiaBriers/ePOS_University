@@ -128,12 +128,6 @@
                     </div>
                         <div id="bottomMemu" class="container">
                             <div class="row border border-dark border-bottom">
-                                <div class="col"></div>
-                                <div class="col">Option 1</div>
-                                <div class="col">Option 2</div>
-                                <div class="col">Option 3</div>
-                                <div class="col">Option 4</div>
-                                <div class="col"></div>
                             </div>
                             <footer class="row">
                                 <p id="footerText">
