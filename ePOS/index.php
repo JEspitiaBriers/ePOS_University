@@ -5,7 +5,7 @@
     //DJ general notes 20/04
     //
 
-    if(!isset($_SESSION['orderID']) || empty($_SESSION['orderID'])){
+    if(!isset($_GET['orderID']) || empty($_GET['orderID'])){
         $_SESSION['orderID'] = 0;
     }
     else {

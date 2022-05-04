@@ -2,6 +2,7 @@
 require_once "head.php";
 $_SESSION['changeGiven'] = false;
 echo "<div style='position:absolute; left:205px;'> {$_SESSION['changeGiven']}";
+echo $_SESSION['orderID'];
 $_SESSION['quantity'] = $_GET['quantity'];
 print_r($_SESSION['quantity']);
 $_SESSION['cashGiven'] = $_GET['cashGiven'];
@@ -18,7 +19,7 @@ if($_SESSION['payment'] == "SAVE"){
     $_SESSION['payment_status'] = "AWAITING";
 }
 else {
-    $_SESSION['payment_status'] = "RECIEVED";
+    $_SESSION['payment_status'] = "RECEIVED";
 }
 echo "</div>";
 
