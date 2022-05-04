@@ -5,13 +5,12 @@
     //DJ general notes 20/04
     //
     
-
+    $_SESSION['orderID'] = $_GET['orderID'];
     if(!isset($_SESSION['orderID']) || empty($_SESSION['orderID'])){
         $_SESSION['orderID'] = 0;
         $_SESSION['isNew'] = true;
     }
     else {
-        $_SESSION['orderID'] = $_GET['orderID'];
         $_SESSION['isNew'] = false;
     }
 

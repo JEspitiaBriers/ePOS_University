@@ -144,7 +144,7 @@ else
 }
 
 //create Start of Day table:
-$createStart = "CREATE TABLE startOfDay (dayStart DATE, stock VARCHAR(10), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(20));";
+$createStart = "CREATE TABLE startOfDay (dayStart DATE, stock VARCHAR(20), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(20));";
 ///////////// --- NOTE: username can be user initials plus idnumber plus random int
 
 // no data returned, check for drop success/failure:
@@ -158,7 +158,7 @@ else
 }
 
 //create End of Day table:
-$createEnd = "CREATE TABLE endOfDay (dayEnd DATE, stock VARCHAR(10), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(10), total_income FLOAT(20));";
+$createEnd = "CREATE TABLE endOfDay (dayEnd DATE, stock VARCHAR(20), total_orders SMALLINT(10), num_open_orders SMALLINT(10), balance FLOAT(10), total_income FLOAT(20));";
 ///////////// --- NOTE: username can be user initials plus idnumber plus random int
 
 // no data returned, check for drop success/failure:
@@ -197,18 +197,6 @@ if (mysqli_query($connection, $createOrders))
 else
 {
     die("Error creating table: orders -> " . mysqli_error($connection));
-}
-
-
-
-$createStock = "CREATE TABLE stock(stockID INT(10) AUTO_INCREMENT, productID INT(10) NOT NULL, product_stock INT(100) NOT NULL,number_sold INT(100) NOT NULL, dateChecked DATE NOT NULL, PRIMARY KEY(stockID),CONSTRAINT FK_productID FOREIGN KEY (productID) REFERENCES products(productID) );" ;
-if (mysqli_query($connection, $createStock))
-{
-    echo "Table created successfully: stock<br>";
-}
-else
-{
-    die("Error creating table: stock -> " . mysqli_error($connection));
 }
 
 //----------END: table creation
