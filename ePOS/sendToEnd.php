@@ -26,15 +26,16 @@ $stockFile = mysqli_fetch_assoc($stockExe)['stock'];
 $stockContents = json_decode(file_get_contents("stockFiles/{$stockFile}"), true);
 print_r($stockContents);
 
-subtract order contents from stock if the order is paid
+//subtract order contents from stock if the order is paid
 
 if($orderFile['Payment Status'] == "AWAITING"){
-    $openOrder = 1;
+    
 }
 else {
     for($i=0; $i<count($orderContents['Products Selected']['Qty']); $i++){
         if($orderContents['Products Selected']['Item'][$i] == $stockContents['Product'][$i]){
             $stockContents['Product'][$i] -= $orderContents['Products Selected']['Qty'][$i];
+            
         }
     }
 }
