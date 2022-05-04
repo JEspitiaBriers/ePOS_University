@@ -8,9 +8,11 @@
 
     if(!isset($_GET['orderID']) || empty($_GET['orderID'])){
         $_SESSION['orderID'] = 0;
+        $_SESSION['isNew'] = true;
     }
     else {
         $_SESSION['orderID'] = $_GET['orderID'];
+        $_SESSION['isNew'] = false;
     }
 
     $productsQuery = "SELECT * FROM products";
