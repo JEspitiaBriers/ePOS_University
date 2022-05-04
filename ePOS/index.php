@@ -15,14 +15,7 @@
         echo <<<HEREDOC
                 <a href="logout.php">Logout</a>
 
-                <div class="checkoutButton position-absolute top-50 start-0">
-                    <form action="orders.php" method="GET">
-                        <button class="btn btn-warning btn-lg btn-block" type="submit">Select Order</button>
-                    </form>
-                    <form action="admin/view_data.php" method="GET">
-                        <button class="btn btn-warning btn-lg btn-block" type="submit">End Of Day</button>
-                    </form>
-                </div>
+
                 
 
                 <div id="body" class="limiter">

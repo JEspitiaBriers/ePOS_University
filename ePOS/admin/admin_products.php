@@ -14,7 +14,6 @@ echo <<<_END
                     <th>Product Name</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>Number Sold</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +25,7 @@ $query = "SELECT * FROM products";
 $results = mysqli_query($connection, $query);
 while($rows = mysqli_fetch_assoc($results)){
     echo "<tr>";
-    echo "<td><img src =../".$rows['product_image']." alt = ''</img></td><td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td><td>{$rows['number_sold']}</td>"; 
+    echo "<td><img src =../".$rows['product_image']." alt = ''</img></td><td>{$rows['productID']}</td><td>{$rows['product_name']}</td><td>{$rows['product_description']}</td><td>{$rows['price']}</td>"; 
     
     echo '<td>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal'.$rows['productID'].'">Edit</button>
@@ -55,8 +54,6 @@ while($rows = mysqli_fetch_assoc($results)){
                                     <label for="price" id ="price">Price</label></br>
                                     <input name="price" type="text" value ="'.$rows['price'].'"><br/>
 
-                                    <label for="number_sold" id ="number_sold">Number Sold</label></br>
-                                    <input name="number_sold" type="text" value ="'.$rows['number_sold'].'"><br/>
                         </div>
                         <form class="modal-footer" method="POST" action="edit_products.php">
                             <button type="submit" class="btn btn-success" name="prod" value="'.$rows['productID'].'">Submit Changes</button>

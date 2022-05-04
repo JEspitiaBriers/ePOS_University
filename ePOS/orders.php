@@ -1,5 +1,5 @@
 <?php
-    include "head.php";
+    require "head.php";
 
     if (isset($_SESSION['loggedin'])) {
         
@@ -19,8 +19,8 @@
                                 <img src="images/logoweb.png" id="logoweb">
                             </div>
                             <div class="workingArea">
-                            <div id="time" class="container border border-dark">
-                                Time + Date
+                            <div class="container border border-dark">
+                                <h6 id = "hClock"></h6>
                             </div>
                             <table>
                                 <tr>
