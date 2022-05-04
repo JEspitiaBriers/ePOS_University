@@ -4,12 +4,18 @@
 
     //DJ general notes 20/04
     //
-    $_SESSION['orderID'] = $_GET['orderID'];
+    
+    if(!isset($_SESSION['orderID']) || empty($_SESSION['orderID'])){
+        $_SESSION['orderID'] = 0;
+    }
+    else {
+        $_SESSION['orderID'] = $_GET['orderID'];
+    }
     $productsQuery = "SELECT * FROM products";
     $resultProductsQuery = mysqli_query($connection, $productsQuery);
     $nProducts = mysqli_num_rows($resultProductsQuery);
     $ean13=0;
-    
+
     if (isset($_SESSION['loggedin'])) {
 
         echo <<<HEREDOC
