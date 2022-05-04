@@ -1,8 +1,14 @@
 
 function display_ct() {
     var x = new Date()
-    var x1=x.toUTCString();// changing the display to UTC string
-    document.getElementById('hClock').innerHTML = x1;
+    var xx = x.toString();
+    var xx2 = xx.substring(0,25)
+
+    
+    
+    //var x1=x.toUTCString();// changing the display to UTC string
+    
+    document.getElementById('hClock').innerHTML = xx2;
     tt=display_c();
 }
 
