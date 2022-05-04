@@ -48,8 +48,9 @@
             while ($row = mysqli_fetch_assoc($getOrdersExe)){
             $prodString = "";
             $details = json_decode(file_get_contents("ordersFolder/order{$row['orderID'][$i]}.json"), true);
+            $orderID = $row['orderID'];
                 echo "<tr>";
-                echo "<td>{$row['orderID']}";
+                echo "<td>{$orderID}";
                 echo "<td>";
                 for($j = 0; $j < count($details['Products Selected']['Item']); $j++){
                     $prodString .= "{$details['Products Selected']['Qty'][$j]}" . "x " . "{$details['Products Selected']['Item'][$j]}" . " ";
@@ -66,8 +67,8 @@
                 echo <<<HEREDOC
                                     <td>
                                         <form action="index.php" method="GET">
-                                        <input type="text" name="orderID" value="{$row['orderID']}" hidden readonly></input>
-                                        <button style="background-color: #808080" type="submit">Select Order {$row['orderID']}</button>
+                                            <input type="text" name="orderID" value="{$orderID}" hidden></input>
+                                            <button style="background-color: #808080" type="submit">Select Order {$orderID}</button>
                                         </form>
                                     </td>
                 HEREDOC;

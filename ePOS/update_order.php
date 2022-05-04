@@ -5,8 +5,10 @@ $numOfProd = 0;
 $prodSelectArray = Array();
 $prodSelect = Array();
 
+echo "<div style='position:absolute; left:205px;'>";
 //it should be incremented from the highest value if the order is new
 //checks if the order already exists
+
 $checkQuery = "SELECT * FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);
 $orderResults = mysqli_num_rows($checkOrder);
@@ -82,10 +84,10 @@ else {
     $updateProducts = "UPDATE orders SET number_of_products = {$numOfProd}, products = '".$fileName."', total_cost = {$_SESSION['total']} WHERE orderID = {$_SESSION['orderID']}";
     $updated = mysqli_query($connection, $updateProducts);
     if(!$updated){
-        echo "<div style='position:absolute; left:205px;'> Error Updating Order {$_SESSION['orderID']} </div>";
+        echo "Error Updating Order {$_SESSION['orderID']}";
     }
     else {
-        echo "<div style='position:absolute; left:205px;'>Order {$_SESSION['orderID']} has successfully been updated!";
+        echo "Order {$_SESSION['orderID']} has successfully been updated!";
         
     }
     if($_SESSION['payment'] == 'SAVE'){
@@ -104,6 +106,5 @@ else {
     </div>
     END;
     }
-    
 }
 ?>
