@@ -1,29 +1,38 @@
 <?php
 require 'head.php';
 require 'database/credentials.php';
-
+//read the array
+//increment counters
+//add variables 
+//read
 
 $totalBalance= 2000.00;
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-$totalProductsArray[] = unserialize($_POST['$serializedstockChanges']);
+
+$testArray = array();
+//$date = date();
+//var = 
+
+//$totalProductsArray[] = unserialize($_POST['$serializedstockChanges']);
+
+
 echo <<<_END
         <div class = "fluid-container">
             <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
                 <thead>
                     <tr>
-                        <th>Sales Made (Count of all items in array in general)</th>
-                        <th>Best Selling Product? </th>
+                        <th>Sales Made (Count of all quantity in array in general)</th>
+
                         <th>Total Products Sold(Total amount of items in array products wise)</th>
-                        <th>Each item sold in a day? NEed to keep track of this somehow</th>
-                        <th>Amount of Stock left(and how much sold?)</th>
+
+                        <th>Each item sold in a day?</th>
 
 
-                        
+                        <th>Amount of Stock(Get total stock level, remove total products sold, new)</th>
+                        <th>Amount of Stock Left</th>
 
-                        <th>Balance before earnings</th>
-                        <th>Earnings</th>
-                        <th>Loss</th>
-
+                        <th>Balance before earnings. Literally just the total balance.</th>
+                        <th>Earnings. Total price of everything added together + variable of balance</th>
 
                     </tr>
                 </thead>
@@ -52,10 +61,10 @@ $orderAtStartQuery = "SELECT COUNT(orderID) FROM orders";
 $orderAtStartExe = mysqli_query($connection, $orderAtStartQuery);
 $orderAtStartResult = mysqli_fetch_assoc($orderAtStartExe);
 
-print_r($orderAtStartResult);
+//print_r($orderAtStartResult);
 
 $ptDQuery ="SELECT COUNT(payment_type) AS card FROM orders WHERE payment_type = 'CARD'; ";
-$ptHQuery .="SELECT COUNT(payment_type) AS cash FROM orders WHERE payment_type = 'CASH'; ";
+$ptHQuery ="SELECT COUNT(payment_type) AS cash FROM orders WHERE payment_type = 'CASH'; ";
 
 
 

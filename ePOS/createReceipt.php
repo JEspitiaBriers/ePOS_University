@@ -1,6 +1,6 @@
 <?php
-require_once "head.php";
 
+require_once "head.php";
 
 $stockChanges = unserialize($_GET['$stockChanges']);
 echo gettype($stockChanges);
