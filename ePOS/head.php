@@ -40,7 +40,6 @@ echo <<<_END
 
 
 if(isset($_SESSION['loggedIn'])){
-    /*
     echo  <<<_END
         <div class="sidenav">
             <img src ="images/logoweb.png" id = "logoweb" alt = "Logo picture" >
@@ -52,7 +51,6 @@ if(isset($_SESSION['loggedIn'])){
             <a href="view_data.php">End of Day Process</a>
         </div>
     _END;
-    */
 }
 
 

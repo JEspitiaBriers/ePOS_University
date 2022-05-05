@@ -1,8 +1,7 @@
 <?php
 require 'head.php';
 require 'database/credentials.php';
-//$stockChanges = unserialize($_GET['$stockChanges']);
-$totalProductsArray[] = unserialize($_POST['$serializedstockChanges']);
+
 
 $totalBalance= 2000.00;
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -11,11 +10,18 @@ echo <<<_END
             <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
                 <thead>
                     <tr>
-                        <th>Sales Made (Count of all items in array in general)</th>
+                        <th>Sales Made (Count of Transactions passed)</th>
                         <th>Best Selling Product? </th>
-                        <th>Total Products Sold (Total amount of items in array products wise)</th>
+                        <th>Total Products Sold (Total amount of all sold in a day)</th>
                         <th>Each item sold in a day? NEed to keep track of this somehow</th>
                         <th>Amount of Stock left(and how much sold?)</th>
+
+
+                        
+
+                        <th>Balance before earnings</th>
+                        <th>Earnings</th>
+                        <th>Loss</th>
 
 
                     </tr>
@@ -45,10 +51,10 @@ $orderAtStartQuery = "SELECT COUNT(orderID) FROM orders";
 $orderAtStartExe = mysqli_query($connection, $orderAtStartQuery);
 $orderAtStartResult = mysqli_fetch_assoc($orderAtStartExe);
 
-//print_r($orderAtStartResult);
+print_r($orderAtStartResult);
 
 $ptDQuery ="SELECT COUNT(payment_type) AS card FROM orders WHERE payment_type = 'CARD'; ";
-$ptHQuery ="SELECT COUNT(payment_type) AS cash FROM orders WHERE payment_type = 'CASH'; ";
+$ptHQuery .="SELECT COUNT(payment_type) AS cash FROM orders WHERE payment_type = 'CASH'; ";
 
 
 
