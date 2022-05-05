@@ -98,10 +98,10 @@ else {
         END;
     }
     else {
-        $stockChanges = send($connection);
+        $stockChanges[] = send($connection);
         echo <<<END
-        <form action="createReceipt.php" method='GET'>   
-            <button class="btn btn-warning btn-lg btn-block" type="submit" value="{$stockChanges}">Print Receipt</button>
+        <form action="createReceipt.php" method='POST'>   
+            <button class="btn btn-warning btn-lg btn-block" type="submit" name="stockChanges" value="{$stockChanges}">Print Receipt</button>
         </form>
     </div>
     END;
