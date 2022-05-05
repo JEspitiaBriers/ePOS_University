@@ -24,6 +24,8 @@
         $purchaseDetails = mysqli_fetch_assoc($checkOrder)['products'];
         $orderContents = json_decode(file_get_contents("ordersFolder/{$purchaseDetails}"), true);
         $_SESSION['isNew'] = false;
+
+        //$orderContents['Products Selected'] is the base array, add on the end ['Qty'] for quantity and ['Item'] for the item name
         print_r($orderContents['Products Selected']);
     }
 
