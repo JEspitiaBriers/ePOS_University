@@ -65,6 +65,4 @@ echo <<<END
     </div>
 END;
 
-
-
 ?>

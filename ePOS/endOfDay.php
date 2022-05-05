@@ -1,9 +1,12 @@
 <?php
 require_once "head.php";
 
-echo $_SERVER['HTTP_REFERER'];
+echo $_SESSION['sendingData'];
 
-if($_SERVER['HTTP_REFERER'] = "sendToEnd.php"){
-
+if($_SESSION['sendingData']){
+    echo "receiving";
+}
+else {
+    echo "loading";
 }
 ?>
