@@ -1,12 +1,14 @@
 <?php
 require_once "head.php";
 
-echo $_SESSION['sendingData'];
-
-if($_SESSION['sendingData']){
-    echo "receiving";
-}
-else {
-    echo "loading";
-}
+echo <<<END
+<table>
+        <tr>
+            <th>Day Ending</th>
+            <th>Number Of Item Sold</th>
+            <th>New Stock Level</th>
+            <th>Total Income</th>
+            <th>Balance</th>
+        </tr>
+END;
 ?>
