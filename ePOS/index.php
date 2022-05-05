@@ -15,7 +15,16 @@
         $_SESSION['isNew'] = true;
     }
     else {
+        $checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
+        $checkOrder = mysqli_query($connection, $checkQuery);
+        $orderResults = mysqli_num_rows($checkOrder);
+        if($orderResults == 0) {
+            echo "Error getting order file for order {$_SESSION['orderID']} (receipt).";
+        }    
+        $purchaseDetails = mysqli_fetch_assoc($checkOrder)['products'];
+        $orderContents = json_decode(file_get_contents("ordersFolder/{$purchaseDetails}"), true);
         $_SESSION['isNew'] = false;
+        print_r($orderContents['Products Selected']);
     }
 
     $productsQuery = "SELECT * FROM products";
