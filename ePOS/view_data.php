@@ -5,14 +5,15 @@ require 'database/credentials.php';
 
 $totalBalance= 2000.00;
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+$totalProductsArray[] = unserialize($_POST['$serializedstockChanges']);
 echo <<<_END
         <div class = "fluid-container">
             <table class = "styled-CSS" cellpadding='2' cellspacing ='2'>
                 <thead>
                     <tr>
-                        <th>Sales Made (Count of Transactions passed)</th>
+                        <th>Sales Made (Count of all items in array in general)</th>
                         <th>Best Selling Product? </th>
-                        <th>Total Products Sold (Total amount of all sold in a day)</th>
+                        <th>Total Products Sold(Total amount of items in array products wise)</th>
                         <th>Each item sold in a day? NEed to keep track of this somehow</th>
                         <th>Amount of Stock left(and how much sold?)</th>
 
