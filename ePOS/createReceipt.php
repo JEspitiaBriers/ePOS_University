@@ -1,6 +1,8 @@
 <?php
 require_once "head.php";
 
+print_r($_GET['$stockChanges']);
+
 $checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);
 $orderResults = mysqli_num_rows($checkOrder);
