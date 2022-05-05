@@ -1,8 +1,10 @@
 <?php
 require_once "head.php";
 
-echo "<div style='position:absolute; left:205px;'>";
-print_r($_POST['stockChanges']);
+
+$stockChanges = unserialize($_GET['$stockChanges']);
+echo gettype($stockChanges);
+print_r($stockChanges);
 
 $checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);
@@ -66,7 +68,6 @@ echo <<<END
             <input type="submit" value="Return To Orders">
         </form>
     </div>
-</div>
 END;
 
 ?>

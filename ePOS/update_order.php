@@ -98,10 +98,12 @@ else {
         END;
     }
     else {
-        $stockChanges[] = send($connection);
+        $stockChanges = send($connection);
+        $serializedstockChanges = serialize($stockChanges);
+        print_r($stockChanges);
         echo <<<END
-        <form action="createReceipt.php" method='POST'>   
-            <button class="btn btn-warning btn-lg btn-block" type="submit" name="stockChanges" value="{$stockChanges}">Print Receipt</button>
+        <form action="createReceipt.php" method='GET'>   
+            <button class="btn btn-warning btn-lg btn-block" type="submit" name="stockChanges" value="{$serializedstockChanges}">Print Receipt</button>
         </form>
     </div>
     END;
@@ -140,8 +142,8 @@ function send($connection){
             if($orderContents['Products Selected']['Item'][$i] == $stockContents['Product'][$j]){
                 echo "<br><br>Stock for item {$stockContents['Product'][$j]}: {$stockContents['Stock'][$j]}<br>";
                 echo "Number sold {$orderContents['Products Selected']['Qty'][$i]}<br>";
-                $diffInCount[$j] = $stockContents['Stock'][$j] - $orderContents['Products Selected']['Qty'][$i];
-                echo "New stock for item {$stockContents['Product'][$j]}: {$diffInCount[$j]}";
+                $diffInCount = $stockContents['Stock'][$j] - $orderContents['Products Selected']['Qty'][$i];
+                echo "New stock for item {$stockContents['Product'][$j]}: {$diffInCount}";
                 array_push($diffPerProduct, $diffInCount);
             }
         }
