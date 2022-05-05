@@ -247,13 +247,13 @@ function GenerateUsername ($firstname, $lastname) {
 $product_name[] = "WATER"; $price[] = "1.25"; $product_description[] = "500ml bottle of water"; $product_image[] = "images/products/water-250.png"; $EAN13[] = "3068320055008";
 $product_name[] = "COKE"; $price[] = "1.00"; $product_description[] = "330ml can of coke"; $product_image[] = "images/products/coke-250.png"; $EAN13[] = "5017726180034";
 $product_name[] = "FANTA"; $price[] = "1.00"; $product_description[] = "330ml can of fanta"; $product_image[] = "images/products/fanta-250.png"; $EAN13[] = "0000000000000";
-$product_name[] = "VIMTO"; $price[] = "1.00"; $product_description[] = "330ml can of vimto"; $product_image[] = "images/products/vimto.png"; $EAN13[] = "0000000000000";
+$product_name[] = "VIMTO"; $price[] = "1.00"; $product_description[] = "330ml can of vimto"; $product_image[] = "images/products/vimto.png"; $EAN13[] = "5010438020186";
 $product_name[] = "REDBULL"; $price[] = "1.25"; $product_description[] = "330ml can of redbull"; $product_image[] = "images/products/redbull-250.png"; $EAN13[] = "0000000000000";
 $product_name[] = "CHOCOLATE"; $price[] = "0.75"; $product_description[] = "snack size chocolate bar"; $product_image[] = "images/products/chocolatebar.png"; $EAN13[] = "0000000000000";
 $product_name[] = "SHIRT M"; $price[] = "15.25"; $product_description[] = "medium sized plain shirt"; $product_image[] = "images/products/shirt.png"; $EAN13[] = "0000000000000";
 $product_name[] = "BOOK"; $price[] = "10.99"; $product_description[] = "200 page book"; $product_image[] = "images/products/book.png"; $EAN13[] = "9780316769488";
 $product_name[] = "CRUMPETS"; $price[] = "0.79"; $product_description[] = "Crumpets"; $product_image[] = "images/products/crumpets.png"; $EAN13[] = "5010044000701";
-$product_name[] = "SNAKES"; $price[] = "1.00"; $product_description[] = "Snakes"; $product_image[] = "images/products/snakes.png"; $EAN13[] = "5010044000701";
+$product_name[] = "SNAKES"; $price[] = "1.00"; $product_description[] = "Snakes"; $product_image[] = "images/products/snakes.png"; $EAN13[] = "5060046641907";
 
 for ($i = 0; $i<count($product_name); $i++){
     $populateProducts = "INSERT INTO products (productID, product_name, price, product_description, product_image, EAN13) VALUES (
