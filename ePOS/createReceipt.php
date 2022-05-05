@@ -1,8 +1,6 @@
 <?php
 
-require_once "head.php";
-
-$stockChanges = unserialize($_GET['$stockChanges']);
+$stockChanges = unserialize($_GET['$serializedstockChanges']);
 echo gettype($stockChanges);
 print_r($stockChanges);
 
