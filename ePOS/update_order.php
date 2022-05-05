@@ -144,7 +144,8 @@ function send($connection){
                 echo "Number sold {$orderContents['Products Selected']['Qty'][$i]}<br>";
                 $diffInCount = $stockContents['Stock'][$j] - $orderContents['Products Selected']['Qty'][$i];
                 echo "New stock for item {$stockContents['Product'][$j]}: {$diffInCount}";
-                array_push($diffPerProduct, $diffInCount);
+                $perProcuct = Array ($stockContents['Product'][$j] => $diffInCount);
+                array_push($diffPerProduct, $perProcuct);
             }
         }
     }
