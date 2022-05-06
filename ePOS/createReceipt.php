@@ -1,5 +1,4 @@
 <?php
-require_once "head.php";
 
 print_r($_SESSION['stockChanges']);
 $stockChanges = $_SESSION['stockChanges'];
