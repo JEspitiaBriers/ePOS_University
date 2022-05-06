@@ -5,6 +5,8 @@
     //DJ general notes 20/04
     //
 
+    
+
     if (isset($_GET['orderID'])){
         $_SESSION['orderID'] = $_GET['orderID'];
     }
@@ -27,6 +29,20 @@
 
         //$orderContents['Products Selected'] is the base array, add on the end ['Qty'] for quantity and ['Item'] for the item name
         print_r($orderContents['Products Selected']);
+        print_r($orderContents['Products Selected']['Qty']);
+        print_r($orderContents['Products Selected']['Item']);
+        print_r($orderContents['Total Cost']);
+        
+        $amendingNumberOfItems = COUNT($orderContents['Products Selected']['Item']); // number items on the order 
+       
+        echo "<br>";
+
+        print_r($orderContents['Products Selected']['Qty'][0]); //4 
+
+        echo "<br>";
+
+        print_r($orderContents['Products Selected']['Item'][0]); //REDBULL
+
     }
 
     $productsQuery = "SELECT * FROM products";
@@ -111,11 +127,50 @@
                             <div id="checkout" class="col border-start border-dark">
                                 <form action="setSessVars.php" method="GET">
                                     <div class="cart-items">
+        HEREDOC;
+        if (isset($amendingNumberOfItems)){
+
+
+            for ($i=0; $i<$amendingNumberOfItems; $i++){
+
+                echo <<<HEREDOC
+
+                <div class="cart-item cart-column">
+                    <span class="cart-item-title">
+                    <input hidden name="itemTitle[]" value="{$orderContents['Products Selected']['Item'][$i]}">
+                    {$orderContents['Products Selected']['Item'][$i]}</span>
+                    <span class="cart-price cart-column">
+                    <input hidden name="itemPrice[]" value="{$orderContents['Products Selected']['Price'][$i]}}">
+                    £{$orderContents['Products Selected']['Price'][$i]}</span>
+                    <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
+                    <input class="cart-quantity-input" name="quantity[]" type="number" value="{$orderContents['Products Selected']['Qty'][$i]}">            
+                </div>
+
+                HEREDOC;
+            }
+
+        }
+
+        echo <<<HEREDOC
                                     </div>
                                     <div class="cart-total">
                                         <strong class="cart-total-title">Total</strong>
-                                        <span class="cart-total-price">£0</span>
-                                        <input hidden id="total" name="total" value="error">
+                                        
+        HEREDOC;
+//$orderContents['Total Cost']
+       
+        //print_r($totalCost);
+        if (isset($amendingNumberOfItems)){
+            $totalCost = $orderContents['Total Cost'];
+            echo "<span class='cart-total-price'>£$totalCost</span>";
+        }
+
+        else{
+            echo "<span class='cart-total-price'>£0</span>";
+        }
+
+        echo <<<HEREDOC
+                                    <input hidden id='total' name='total' value='error'>    
                                     </div>
                                     <div class="checkoutButton">
                                         <div class="form-check form-check-inline">

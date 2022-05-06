@@ -1,7 +1,9 @@
 <?php
 require_once "head.php";
 
-$stockChanges = unserialize($_GET['$serializedstockChanges']);
+print_r($_SESSION['stockChanges']);
+$stockChanges = $_SESSION['stockChanges'];
+
 echo gettype($stockChanges);
 print_r($stockChanges);
 

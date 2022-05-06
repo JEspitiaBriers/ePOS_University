@@ -39,19 +39,19 @@ echo <<<_END
 
 
 
-// if(isset($_SESSION['loggedIn'])){
-//     echo  <<<_END
-//         <div class="sidenav">
-//             <img src ="images/logoweb.png" id = "logoweb" alt = "Logo picture" >
-//             <a href="index.php">Till System</a>
-//             <a href="logout.php">Logout</a>
-//             <a href="orders.php">Order Page</a>
-//             <a href="admin_users.php">Manage Users</a>
-//             <a href="admin_products.php">Manage Products</a>
-//             <a href="view_data.php">End of Day Process</a>
-//         </div>
-//     _END;
-// }
+ if(isset($_SESSION['loggedIn'])){
+    echo  <<<_END
+         <div class="sidenav">
+            <img src ="images/logoweb.png" id = "logoweb" alt = "Logo picture" >
+             <a href="index.php">Till System</a>
+            <a href="logout.php">Logout</a>
+             <a href="orders.php">Order Page</a>
+            <a href="admin_users.php">Manage Users</a>
+             <a href="admin_products.php">Manage Products</a>
+           <a href="view_data.php">End of Day Process</a>
+       </div>
+    _END;
+ }
 
 
 
