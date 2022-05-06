@@ -26,22 +26,7 @@
         $purchaseDetails = mysqli_fetch_assoc($checkOrder)['products'];
         $orderContents = json_decode(file_get_contents("ordersFolder/{$purchaseDetails}"), true);
         $_SESSION['isNew'] = false;
-
-        //$orderContents['Products Selected'] is the base array, add on the end ['Qty'] for quantity and ['Item'] for the item name
-        print_r($orderContents['Products Selected']);
-        print_r($orderContents['Products Selected']['Qty']);
-        print_r($orderContents['Products Selected']['Item']);
-        print_r($orderContents['Total Cost']);
-        
-        $amendingNumberOfItems = COUNT($orderContents['Products Selected']['Item']); // number items on the order 
-       
-        echo "<br>";
-
-        print_r($orderContents['Products Selected']['Qty'][0]); //4 
-
-        echo "<br>";
-
-        print_r($orderContents['Products Selected']['Item'][0]); //REDBULL
+        $amendingNumberOfItems = COUNT($orderContents['Products Selected']['Item']); // number items on the order
 
     }
 
@@ -132,7 +117,6 @@
 
 
             for ($i=0; $i<$amendingNumberOfItems; $i++){
-
                 echo <<<HEREDOC
 
                 <div class="cart-item cart-column">
@@ -140,7 +124,7 @@
                     <input hidden name="itemTitle[]" value="{$orderContents['Products Selected']['Item'][$i]}">
                     {$orderContents['Products Selected']['Item'][$i]}</span>
                     <span class="cart-price cart-column">
-                    <input hidden name="itemPrice[]" value="{$orderContents['Products Selected']['Price'][$i]}}">
+                    <input hidden name="itemPrice[]" value="{$orderContents['Products Selected']['Price'][$i]}">
                     £{$orderContents['Products Selected']['Price'][$i]}</span>
                     <img src="images/icons/trash.svg" alt="deleteButton" class="btn-danger"/>
                     <input class="cart-quantity-input" name="quantity[]" type="number" value="{$orderContents['Products Selected']['Qty'][$i]}">            
