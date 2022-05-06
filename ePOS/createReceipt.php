@@ -2,11 +2,7 @@
 require_once "head.php";
 
 echo"<div style='position:absolute; left:205px;'>";
-print_r($_SESSION['stockChanges']);
 $stockChanges = $_SESSION['stockChanges'];
-echo "<br><br>";
-print_r($stockChanges);
-echo "</div>";
 
 $checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);

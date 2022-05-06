@@ -7,8 +7,6 @@ require 'database/credentials.php';
 //read
 
 echo "<div style='position:absolute; left:205px;'>";
-print_r($_SESSION);
-echo "<br><br>";
 $totalBalance= 2000.00;
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
@@ -54,11 +52,7 @@ echo <<<END
             <tbody>
                 <tr>
                     <td>{$_SESSION['ordersToday']}</td>
-                    <td>
-END;
-
-echo <<<END
-                    </td>
+                    <td></td>
                     <td></td>
                     <td>
 END;

@@ -85,7 +85,7 @@ else {
         echo "<div style='position:absolute; left:205px;'> Error Updating Order {$_SESSION['orderID']} </div>";
     }
     else {
-        echo "<div style='position:absolute; left:205px;'>Order {$_SESSION['orderID']} has successfully been updated!";
+        echo "<div style='position:absolute; left:205px;'><h1>Payment has been Received. <br>Print receipt or go to Orders Menu.<h1>";
         
     }
     if($_SESSION['payment'] != 'SAVE' && $_SESSION['isNew']){
@@ -103,11 +103,10 @@ else {
         $stockChanges = send($connection);
         $_SESSION['stockChanges'] = $stockChanges;
         $serializedstockChanges = serialize($stockChanges);
-        print_r($serializedstockChanges);
-        echo"<br><br>";
-        print_r($_SESSION['stockChanges']);
-        //print_r($serializedstockChanges);
         echo <<<END
+        <form action="orders.php">   
+            <button class="btn btn-warning btn-lg btn-block" type="submit">Return to Orders</button>
+        </form>
         <form action="createReceipt.php" method='POST'> 
             <button class="btn btn-warning btn-lg btn-block" type="submit">Print Receipt</button>
         </form>
