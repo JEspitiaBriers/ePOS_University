@@ -1,10 +1,12 @@
 <?php
+require_once "head.php";
 
+echo"<div style='position:absolute; left:205px;'>";
 print_r($_SESSION['stockChanges']);
 $stockChanges = $_SESSION['stockChanges'];
-
-echo gettype($stockChanges);
+echo "<br><br>";
 print_r($stockChanges);
+echo "</div>";
 
 $checkQuery = "SELECT products FROM orders WHERE orderID = {$_SESSION['orderID']}";
 $checkOrder = mysqli_query($connection, $checkQuery);
@@ -64,7 +66,7 @@ echo <<<END
         </p>
     </div>
     <div style='position:absolute; left:205px;'>
-        <form action="sendToEnd.php">
+        <form action="orders.php">
             <input type="submit" value="Return To Orders">
         </form>
     </div>

@@ -7,6 +7,9 @@ session_start();
 //and end session either after a logout or time out
 //22/04 - DJ - onload display ct should change the H6 div id'd s clock, however it does not.
 
+if($_SESSION['endOfDayRun']){
+    $_SESSION['ordersToday'] = 0;
+}
 
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 //display error message if failed to connect

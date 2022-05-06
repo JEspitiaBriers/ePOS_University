@@ -3,7 +3,6 @@
 
   session_start();
   
-
   $username="";
   $UserMatch = false; 
   $fullMatch = false;
@@ -105,6 +104,8 @@
           }
           if ($fullMatch == true) {
             $showForm = false;
+            $_SESSION['endOfDayRun'] = false;
+            $_SESSION['ordersToday'] = 0;
             $_SESSION['loggedIn'] = true; 
             $_SESSION['username'] = $_POST['username'];
 
