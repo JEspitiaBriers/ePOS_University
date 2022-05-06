@@ -31,8 +31,7 @@ echo <<<_END
                         <th>Amount of Stock(Get total stock level, remove total products sold, new)</th>
                         <th>Amount of Stock Left</th>
 
-                        <th>Balance before earnings. Literally just the total balance.</th>
-                        <th>Earnings. Total price of everything added together + variable of balance</th>
+                        <th>Earnings. Total price of everything added together</th>
 
                     </tr>
                 </thead>
@@ -43,6 +42,10 @@ echo <<<_END
         </div>
     _END;
 
+    
+
+
+ //getting the product name if its first element
     
 echo <<<_END
         <table class = "table-2" cellpadding='2' cellspacing ='2'>
